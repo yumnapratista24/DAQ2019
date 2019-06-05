@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <PreferenceCategory
+        android:title="@string/pref_cat1">
+        <Preference
+            android:key="method"
+            android:icon="@drawable/ic_action_access_alarm"
+            android:title="@string/pref_method">
+
+        </Preference>
+        <Preference
+            android:key="volume"
+            android:icon="@drawable/ic_headset"
+            android:title="@string/pref_volume">
+
+        </Preference>
+        <Preference
+            android:icon="@drawable/ic_action_add_circle"
+            android:key="general"
+            android:title="@string/pref_general">
+
+        </Preference>
+
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        android:title="@string/pref_cat2">
+        <Preference
+            android:key="caution"
+            android:title="@string/pref_caution">
+
+        </Preference>
+        <Preference
+            android:key="faq"
+            android:title="@string/pref_faq">
+
+        </Preference>
+        <Preference
+            android:key="feedback"
+            android:title="@string/pref_feedback">
+
+        </Preference>
+
+    </PreferenceCategory>
+
+</PreferenceScreen>

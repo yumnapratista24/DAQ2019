@@ -1,0 +1,24 @@
+<resources>
+    <string name="app_name">ueueueu</string>
+    <string name="act_alarm_editor">Set your alarm!</string>
+
+    <string name="settings_page">Welcome to settings!</string>
+    <string name="list_page">Welcome to the list page!</string>
+    <string name="pref_method">Alarmd and Method</string>
+    <string name="pref_volume">Volume and Sound</string>
+    <string name="pref_general">General</string>
+    <string name="pref_cat1">Application settings</string>
+    <string name="pref_cat2">About</string>
+    <string name="pref_caution">Caution</string>
+    <string name="pref_faq">FAQ</string>
+    <string name="pref_feedback">Send Feedback</string>
+    <string name="alarm_edit_time">Time</string>
+    <string name="alarm_edit_method">Alarm method</string>
+    <string name="alarm_edit_problem">Problem</string>
+    <string name="alarm_edit_iterate">Iterate</string>
+    <string name="alarm_edit_sound">Ringtone sound</string>
+
+    <string name="alarm_save">Save alarm</string>
+
+
+</resources>
