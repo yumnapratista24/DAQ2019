@@ -1,6 +1,17 @@
 <resources>
     <string name="app_name">ueueueu</string>
     <string name="act_alarm_editor">Set your alarm!</string>
+    <string name="act_alarm_settings_method">Alarm method</string>
+
+    <!-- METHOD NAME -->
+    <string name="alarm_method_sambung_ayat">Sambung ayat</string>
+    <string name="alarm_method_default">Default</string>
+    <string name="alarm_method_quran_terjemah">Quran-Terjemah</string>
+    <string name="alarm_method_terjemah_quran">Terjemah-Q</string>
+
+    <!-- Cancel and Ok -->
+    <string name="cancel">Cancel</string>
+    <string name="ok">Ok</string>
 
     <string name="settings_page">Welcome to settings!</string>
     <string name="list_page">Welcome to the list page!</string>
