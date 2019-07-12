@@ -22,13 +22,6 @@
             android:timePickerMode="spinner">
 
         </TimePicker>
-        <ToggleButton
-            android:id="@+id/toggle_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:onClick="toggleOnCLick"/>
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -37,10 +30,12 @@
 
         </LinearLayout>
         <Button
+            android:id="@+id/toggle_button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/alarm_save"
-            android:layout_marginHorizontal="50dp">
+            android:layout_marginHorizontal="50dp"
+            android:onClick="toggleOnCLick">
 
         </Button>
 

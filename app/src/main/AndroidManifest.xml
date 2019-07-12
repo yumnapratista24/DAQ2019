@@ -12,11 +12,14 @@
         <activity
             android:name=".home_page.MainActivity"
             android:label="Al-Arm">
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+
+
         </activity>
 
         <!--SET NEW ALARM AND ALARM SETTINGS ACTIVITY-->
@@ -35,6 +38,12 @@
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".alarm_main_app.AlarmEditor" />
+
+        </activity>
+
+        <receiver android:name=".alarm_main_app.AlarmReceiver"></receiver>
+
+        <activity android:name=".alarm_main_app.AnswerSheet">
 
         </activity>
     </application>

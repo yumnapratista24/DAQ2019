@@ -8,7 +8,11 @@
         <item name="colorAccent">@color/colorAccent</item>
         <item name="preferenceTheme">@style/PreferenceThemeOverlay</item>
     </style>
-
     <style name="alArm" parent="AppTheme" />
+
+    <style name="NoActionBar" parent="@android:style/Theme.Holo.Light">
+        <item name="windowActionBar">false</item>
+        <item name="android:windowNoTitle">true</item>
+    </style>
 
 </resources>

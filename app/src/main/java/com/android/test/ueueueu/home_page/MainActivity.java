@@ -4,6 +4,8 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.ImageButton;
 import com.android.test.ueueueu.home_page.MainActFragment.ListOfAlarm;
 import com.android.test.ueueueu.home_page.MainActFragment.AppSettings;

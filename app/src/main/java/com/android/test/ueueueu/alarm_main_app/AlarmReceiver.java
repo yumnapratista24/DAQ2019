@@ -18,6 +18,9 @@ public class AlarmReceiver extends BroadcastReceiver {
 
     @Override
     public void onReceive(Context context, Intent intent) {
-        Toast.makeText(context, "bambang", Toast.LENGTH_SHORT).show();
+        Intent i = new Intent("android.intent.action.MAIN");
+        i.setClass(context, AnswerSheet.class);
+        i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        context.startActivity(i);
     }
 }

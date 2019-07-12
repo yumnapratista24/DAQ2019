@@ -9,6 +9,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.preference.Preference;
 import android.support.v7.preference.PreferenceFragmentCompat;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TimePicker;
 import android.widget.Toast;
 import android.widget.ToggleButton;
@@ -42,25 +43,21 @@ public class AlarmEditor extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.alarm_set_new_alarm);
         timePicker = (TimePicker) findViewById(R.id.time_picker);
-        ToggleButton toggleButton = (ToggleButton) findViewById(R.id.toggle_button);
-        alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
+        Button toggleButton = (Button) findViewById(R.id.toggle_button);
+        alarmManager = (AlarmManager) this.getSystemService(this.ALARM_SERVICE);
         getSupportFragmentManager().beginTransaction().add(R.id.alarm_preferences, new Alarm_editor_settings()).commit();
     }
 
     public void toggleOnCLick(View view){
-        if (((ToggleButton) view).isChecked()){
-            Calendar calendar = Calendar.getInstance();
-            calendar.set(Calendar.HOUR_OF_DAY, timePicker.getCurrentHour());
-            calendar.set(Calendar.MINUTE, timePicker.getCurrentMinute());
-            Intent myIntent = new Intent(AlarmEditor.this, AlarmReceiver.class);
-            pendingIntent = PendingIntent.getBroadcast(this, 0, myIntent, 0);
-            Toast.makeText(view.getContext(), "Toggle on in " + calendar.getTimeInMillis(), Toast.LENGTH_SHORT).show();
-            alarmManager.set(AlarmManager.ELAPSED_REALTIME_WAKEUP, SystemClock.elapsedRealtime() + 60*1000, pendingIntent);
-        }
-        else{
-            Toast.makeText(view.getContext(), "Toggle off", Toast.LENGTH_SHORT).show();
-            alarmManager.cancel(pendingIntent);
-        }
+        Calendar calendar = Calendar.getInstance();
+        calendar.set(Calendar.HOUR_OF_DAY, timePicker.getCurrentHour());
+        calendar.set(Calendar.MINUTE, timePicker.getCurrentMinute());
+
+        Intent myIntent = new Intent(this, AlarmReceiver.class);
+        myIntent.setAction(Intent.ACTION_MAIN);
+        myIntent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+        pendingIntent = PendingIntent.getBroadcast(this, 0, myIntent, 0);
+        alarmManager.set(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), pendingIntent);
     }
 
     public static class Alarm_editor_settings extends PreferenceFragmentCompat {
