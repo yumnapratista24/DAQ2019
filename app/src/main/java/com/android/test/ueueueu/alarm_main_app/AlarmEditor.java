@@ -8,6 +8,7 @@ import android.os.SystemClock;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.preference.Preference;
 import android.support.v7.preference.PreferenceFragmentCompat;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TimePicker;
@@ -52,12 +53,24 @@ public class AlarmEditor extends AppCompatActivity {
         Calendar calendar = Calendar.getInstance();
         calendar.set(Calendar.HOUR_OF_DAY, timePicker.getCurrentHour());
         calendar.set(Calendar.MINUTE, timePicker.getCurrentMinute());
+        calendar.set(Calendar.SECOND, 0);
+        calendar.set(Calendar.MILLISECOND, 0);
+        int jam = calendar.get(Calendar.HOUR);
+        int menit = calendar.get(Calendar.MINUTE);
+        int kondisi = calendar.get(Calendar.AM_PM);
+        if(kondisi == Calendar.PM){
+            jam+=12;
+        }
+        String waktu = jam + ":" + menit;
+        Log.i("WAKTU",waktu);
 
         Intent myIntent = new Intent(this, AlarmReceiver.class);
+        myIntent.putExtra("waktu",waktu);
         myIntent.setAction(Intent.ACTION_MAIN);
         myIntent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
         pendingIntent = PendingIntent.getBroadcast(this, 0, myIntent, 0);
-        alarmManager.set(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), pendingIntent);
+        alarmManager.set(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(),  pendingIntent);
+        finish();
     }
 
     public static class Alarm_editor_settings extends PreferenceFragmentCompat {

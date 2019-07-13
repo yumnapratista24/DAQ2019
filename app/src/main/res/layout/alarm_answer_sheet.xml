@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
@@ -8,13 +9,15 @@
         android:layout_width="match_parent"
         android:layout_height="80dp"
         android:background="@color/colorPrimary">
-
-        <ImageView
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_centerInParent="true"
-            android:background="@drawable/ic_headset" />
-
+        <TextView
+            android:id="@+id/waktu"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:textAlignment="center"
+            android:text="bambang"
+            android:gravity="center"
+            android:textSize="@android:dimen/app_icon_size"
+            android:textColor="@color/white"/>
     </RelativeLayout>
 
     <LinearLayout
@@ -46,7 +49,5 @@
             android:layout_marginTop="15dp"
             android:text="Ok"
             android:textColor="@color/colorPrimary" />
-
     </LinearLayout>
-
 </LinearLayout>
