@@ -63,10 +63,20 @@ public class AlarmEditor extends AppCompatActivity {
         calendar.set(Calendar.SECOND, 0);
         calendar.set(Calendar.MILLISECOND, 0);
 
+        int jam = calendar.get(Calendar.HOUR);
+        int menit = calendar.get(Calendar.MINUTE);
+        int kondisi = calendar.get(Calendar.AM_PM);
+        if(kondisi == Calendar.PM){
+            jam+=12;
+        }
+        String waktu = jam + ":" + menit;
+        Log.i("WAKTU",waktu);
 
         Intent myIntent = new Intent(this, AlarmReceiver.class);
+        myIntent.putExtra("waktu",waktu);
         myIntent.setAction(Intent.ACTION_MAIN);
         myIntent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+
         pendingIntent = PendingIntent.getBroadcast(this, timePicker.getCurrentMinute(), myIntent, PendingIntent.FLAG_UPDATE_CURRENT);
         alarmManager.set(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), pendingIntent);
 
@@ -95,6 +105,7 @@ public class AlarmEditor extends AppCompatActivity {
         String testprint = example.getString("message", "not found");
 
         Log:d("Tag :: ", testprint);
+
 
         finish();
     }
