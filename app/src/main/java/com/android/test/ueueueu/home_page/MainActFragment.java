@@ -3,6 +3,7 @@ package com.android.test.ueueueu.home_page;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
@@ -31,6 +32,7 @@ public class MainActFragment {
         @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
             View list_of_alarm = inflater.inflate(R.layout.home_fragment_alarm, container, false);
+            list_of_alarm.setBackgroundColor(Color.parseColor("#F3F2F0"));
             FloatingActionButton newAlarm = list_of_alarm.findViewById(R.id.alarm_add);
             newAlarm.setOnClickListener(new View.OnClickListener(){
                 @Override

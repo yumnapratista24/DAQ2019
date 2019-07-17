@@ -5,7 +5,8 @@
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:background="@drawable/border">
 
         <TextView
             android:layout_width="match_parent"
@@ -13,6 +14,7 @@
             android:text="@string/alarm_edit_time"
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:layout_marginBottom="@dimen/alarm_edit_8dp"
+            android:textAlignment="center"
             android:layout_marginHorizontal="10dp"/>
 
         <TimePicker
@@ -24,9 +26,33 @@
         </TimePicker>
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="60dp"
+            android:layout_margin="10dp"
+            android:id="@+id/alarm_coba"
+            android:orientation="vertical"
+            android:background="@drawable/border"
+            android:gravity="center_vertical|left"
+            >
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:textSize="18dp"
+                android:textColor="#000"
+                android:text="coba dulu ocy">
+
+
+            </TextView>
+
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="20dp"
             android:id="@+id/alarm_preferences"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            >
 
         </LinearLayout>
         <Button
