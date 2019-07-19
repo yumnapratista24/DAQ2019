@@ -189,18 +189,6 @@ public class CustomAdapter extends ArrayAdapter<DataModel> implements View.OnCli
                     editor12.putString("message", fs);
                     editor12.commit();
 
-                    // put in extra string in my intent to tell clock you pressed off button
-                    my_intent.putExtra("extra", "alarm off");
-                    my_intent.putExtra("extra1", "alarm off at time :: " + hjk);
-
-                    pending_intent = PendingIntent.getBroadcast(getContext(), position, my_intent, PendingIntent.FLAG_UPDATE_CURRENT);
-
-                    // cancel the pending intent
-                    alarm_manager.cancel(pending_intent);
-
-                    // stop the ringtone
-                    getContext().sendBroadcast(my_intent);
-
                     dataSet.remove(position);
                     notifyDataSetChanged();
             }

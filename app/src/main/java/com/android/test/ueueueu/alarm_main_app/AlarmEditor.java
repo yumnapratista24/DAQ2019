@@ -65,11 +65,20 @@ public class AlarmEditor extends AppCompatActivity {
 
         int jam = calendar.get(Calendar.HOUR);
         int menit = calendar.get(Calendar.MINUTE);
+
+        String jam_string = jam + "";
+        String menit_string = menit + "";
+
         int kondisi = calendar.get(Calendar.AM_PM);
         if(kondisi == Calendar.PM){
             jam+=12;
         }
-        String waktu = jam + ":" + menit;
+
+        if(jam < 10) jam_string = "0"+jam;
+
+        if(menit < 10) menit_string = "0"+menit;
+
+        String waktu = jam_string + ":" + menit_string;
         Log.i("WAKTU",waktu);
 
         Intent myIntent = new Intent(this, AlarmReceiver.class);
