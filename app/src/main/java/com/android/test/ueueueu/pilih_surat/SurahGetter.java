@@ -51,6 +51,7 @@ public class SurahGetter extends BaseAdapter {
         view = inflater.inflate(R.layout.layout_baris_surat,null);
 
         CheckBox surat = view.findViewById(R.id.nama_surat);
+        if(list_surah.get(position).is_choosen) surat.setChecked(true);
 
         surat.setText(list_surah.get(position).surah_name);
 
@@ -59,6 +60,7 @@ public class SurahGetter extends BaseAdapter {
             public void onCheckedChanged(CompoundButton compoundButton, boolean bool) {
                 Surah surah = list_surah.get(position);
                 // Do something
+                surah.is_choosen = true;
                 dbHelper.updateSurah(surah);
                 if(bool == false) {
                     Log.i("CEK FALSE", surah.surah_name + " " + surah.is_choosen);
