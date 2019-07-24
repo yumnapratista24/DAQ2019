@@ -1,4 +1,4 @@
-package com.example.cobadatabase.helper;
+package com.android.test.ueueueu.helper;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
@@ -6,7 +6,6 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
-import com.example.cobadatabase.R;
 import com.example.cobadatabase.model.Schedule;
 import com.example.cobadatabase.model.Surah;
 import com.example.cobadatabase.model.Word;
