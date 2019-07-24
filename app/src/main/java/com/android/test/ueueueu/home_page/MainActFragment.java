@@ -32,7 +32,6 @@ public class MainActFragment {
         @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
             View list_of_alarm = inflater.inflate(R.layout.home_fragment_alarm, container, false);
-            list_of_alarm.setBackgroundColor(Color.parseColor("#F3F2F0"));
             FloatingActionButton newAlarm = list_of_alarm.findViewById(R.id.alarm_add);
             newAlarm.setOnClickListener(new View.OnClickListener(){
                 @Override
@@ -63,7 +62,6 @@ public class MainActFragment {
                 adapter = new CustomAdapter(dataModels, this.getActivity().getApplicationContext(), getLayoutInflater(), this.getActivity());
 
                 listView.setAdapter(adapter);
-
 
             }
 

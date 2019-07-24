@@ -46,9 +46,8 @@
                                   <option name="values">
                                     <map>
                                       <entry key="assetType" value="IMAGE" />
-                                      <entry key="imageAsset" value="D:\Asset android\decrement.png" />
-                                      <entry key="outputName" value="alarm_decrement_problem" />
-                                      <entry key="theme" value="HOLO_DARK" />
+                                      <entry key="imageAsset" value="D:\Asset android\Polygon.png" />
+                                      <entry key="outputName" value="alarm_increment_problem" />
                                       <entry key="themeColor" value="ffffff" />
                                     </map>
                                   </option>

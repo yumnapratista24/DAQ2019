@@ -5,7 +5,6 @@ import android.app.PendingIntent;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.os.SystemClock;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.preference.Preference;
 import android.support.v7.preference.PreferenceFragmentCompat;
@@ -13,15 +12,13 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TimePicker;
-import android.widget.Toast;
-import android.widget.ToggleButton;
 
 import com.android.test.ueueueu.R;
-import com.android.test.ueueueu.home_page.MainActFragment;
 import com.android.test.ueueueu.home_page.MainActFragment.*;
 import com.android.test.ueueueu.model.DataModel;
 
 import java.util.Calendar;
+import java.util.Date;
 
 import static android.util.Log.d;
 import static com.android.test.ueueueu.home_page.MainActivity.PREFS;
@@ -36,6 +33,7 @@ public class AlarmEditor extends AppCompatActivity {
     PendingIntent pendingIntent;
     private TimePicker timePicker;
     private static AlarmEditor inst;
+    public static int id = 0 ;
 
     public static AlarmEditor instance(){
         return inst;
@@ -70,15 +68,16 @@ public class AlarmEditor extends AppCompatActivity {
             jam+=12;
         }
         String waktu = jam + ":" + menit;
-        Log.i("WAKTU",waktu);
+
+        Date date = calendar.getTime();
+        Log.i("Waktu",date + "");
 
         Intent myIntent = new Intent(this, AlarmReceiver.class);
         myIntent.putExtra("waktu",waktu);
         myIntent.setAction(Intent.ACTION_MAIN);
         myIntent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
 
-        pendingIntent = PendingIntent.getBroadcast(this, timePicker.getCurrentMinute(), myIntent, PendingIntent.FLAG_UPDATE_CURRENT);
-        alarmManager.set(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), pendingIntent);
+
 
         SharedPreferences saveAlarm = getSharedPreferences(PREFS, 0);
         String stringSaveAlarm = saveAlarm.getString("message", "not found");
@@ -96,6 +95,14 @@ public class AlarmEditor extends AppCompatActivity {
             editor.putString("message", stringSaveAlarm + ans + " ");
             editor.commit();
         }
+
+        saveAlarm = getSharedPreferences(PREFS, 0);
+        stringSaveAlarm = saveAlarm.getString("message", "not found");
+
+        pendingIntent = PendingIntent.getBroadcast(this, stringSaveAlarm.split(" ").length, myIntent, PendingIntent.FLAG_UPDATE_CURRENT);
+        AlarmEditor.id++;
+        Log.i("WAKTU", stringSaveAlarm.split(" ").length + "");
+        alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), AlarmManager.INTERVAL_DAY * 7, pendingIntent);
 
         ListOfAlarm.adapter.add(new DataModel(ans));
 
