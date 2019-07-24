@@ -5,6 +5,7 @@ import android.app.ListActivity;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
@@ -20,7 +21,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-public class PilihSurat extends Activity {
+public class PilihSurat extends AppCompatActivity {
 
     private SurahGetter surahGetter;
     private ArrayList<String> list_surat;

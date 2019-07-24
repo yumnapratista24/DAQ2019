@@ -41,12 +41,10 @@
 
         </activity>
 
-        <activity android:name=".pilih_surat.PilihSurat">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+        <activity android:name=".pilih_surat.PilihSurat"
+            android:label="Pilih surat hafalanmu"
+            android:parentActivityName=".home_page.MainActivity">
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
 
 
