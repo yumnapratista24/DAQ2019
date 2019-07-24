@@ -2,40 +2,47 @@ package com.android.test.ueueueu.pilih_surat;
 
 import android.content.Context;
 import android.text.Layout;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
+import android.widget.Toast;
 
 import com.android.test.ueueueu.R;
+import com.android.test.ueueueu.helper.DatabaseHelper;
+import com.android.test.ueueueu.model.Surah;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class SurahGetter extends BaseAdapter {
 
     private Context context;
-    private ArrayList<String> list_surah;
+    private List<Surah> list_surah;
+    private DatabaseHelper dbHelper;
 
-    public SurahGetter(Context context, ArrayList<String> list_surah){
+    public SurahGetter(Context context, List<Surah> list_surah, DatabaseHelper dbHelper){
         this.context = context;
         this.list_surah = list_surah;
+        this.dbHelper = dbHelper;
     }
 
     @Override
     public long getItemId(int i) {
-        return 0;
+        return list_surah.get(i).no_surah;
     }
 
     @Override
     public Object getItem(int i) {
-        return null;
+        return list_surah.get(i);
     }
 
     @Override
     public int getCount() {
-        return 0;
+        return list_surah.size();
     }
 
     @Override
@@ -45,15 +52,25 @@ public class SurahGetter extends BaseAdapter {
 
         CheckBox surat = view.findViewById(R.id.nama_surat);
 
-        surat.setText(list_surah.get(position));
+        surat.setText(list_surah.get(position).surah_name);
 
         surat.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean bool) {
-                String surah = list_surah.get(position);
+                Surah surah = list_surah.get(position);
                 // Do something
+                dbHelper.updateSurah(surah);
+                if(bool == false) {
+                    Log.i("CEK FALSE", surah.surah_name + " " + surah.is_choosen);
+                    Toast.makeText(context, surah.surah_name + " is not choosen", Toast.LENGTH_SHORT).show();
+                }
+                else {
+                    Log.i("CEK TRUE", surah.surah_name + " " + surah.is_choosen);
+                    Toast.makeText(context, surah.surah_name + " is choosen", Toast.LENGTH_SHORT).show();
+                }
+
             }
         });
-        return null;
+        return view;
     }
 }
