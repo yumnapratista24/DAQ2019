@@ -29,17 +29,46 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Success"
+            android:text="NAMA SURAT/AYAT"
             android:textAlignment="center"
             android:textAppearance="@style/TextAppearance.AppCompat.Headline" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla eu erat tincidunt lacus fermentum rutrum."
-            android:textAlignment="center"
-            android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+            android:layout_marginTop="20dp"
+            android:layout_gravity="center"
+            android:text="SOALNYEEEE"
+            android:gravity="center"/>
+
+        <RadioGroup
+            android:id="@+id/jawaban"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" >
+
+            <RadioButton
+                android:id="@+id/A"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="JAWABAN LOOO BROO"/>
+            <RadioButton
+                android:id="@+id/B"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="JAWABAN LOOO BROO"/>
+            <RadioButton
+                android:id="@+id/C"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="JAWABAN LOOO BROO" />
+            <RadioButton
+                android:id="@+id/D"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="JAWABAN LOOO BROO"/>
+
+        </RadioGroup>
+
 
         <Button
             android:id="@+id/buttonOk"

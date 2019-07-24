@@ -1,7 +1,7 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 'android-Q'
+    compileSdkVersion 28
     defaultConfig {
         applicationId "com.android.test.ueueueu"
         minSdkVersion 21
