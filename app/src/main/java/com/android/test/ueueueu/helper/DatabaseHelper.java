@@ -6,9 +6,10 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
-import com.example.cobadatabase.model.Schedule;
-import com.example.cobadatabase.model.Surah;
-import com.example.cobadatabase.model.Word;
+import com.android.test.ueueueu.R;
+import com.android.test.ueueueu.model.Schedule;
+import com.android.test.ueueueu.model.Surah;
+import com.android.test.ueueueu.model.Word;
 
 import java.io.BufferedReader;
 import java.io.IOException;
