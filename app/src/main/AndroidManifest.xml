@@ -41,7 +41,7 @@
 
         </activity>
 
-        <activity android:name=".alarm_main_app.PilihSurat">
+        <activity android:name=".pilih_surat.PilihSurat">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
