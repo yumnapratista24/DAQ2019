@@ -87,8 +87,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/android/test/ueueueu/model/Schedule.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="17">
-              <caret line="1" selection-start-line="1" selection-end-line="1" />
+            <state>
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -99,8 +98,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/android/test/ueueueu/model/RepeatedDay.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="425">
-              <caret line="26" column="47" selection-start-line="26" selection-start-column="47" selection-end-line="26" selection-end-column="47" />
+            <state relative-caret-position="221">
+              <caret line="13" column="47" selection-start-line="13" selection-start-column="47" selection-end-line="13" selection-end-column="47" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -138,17 +137,17 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/android/test/ueueueu/model/Word.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="850">
+            <state relative-caret-position="162">
               <caret line="51" column="39" selection-start-line="51" selection-start-column="39" selection-end-line="51" selection-end-column="39" />
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/android/test/ueueueu/helper/DatabaseHelper.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state>
-              <caret column="23" selection-start-column="23" selection-end-column="23" />
+            <state relative-caret-position="264">
+              <caret line="363" lean-forward="true" selection-start-line="363" selection-end-line="363" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="method#insertFromFile#0;class#DatabaseHelper#0" />
@@ -169,11 +168,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/.idea/workspace.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="332">
-              <caret line="792" column="10" lean-forward="true" selection-start-line="792" selection-start-column="10" selection-end-line="792" selection-end-column="10" />
+            <state relative-caret-position="145">
+              <caret line="727" column="16" lean-forward="true" selection-start-line="727" selection-start-column="16" selection-end-line="727" selection-end-column="16" />
             </state>
           </provider>
         </entry>
@@ -229,14 +228,14 @@
         <option value="$PROJECT_DIR$/src/main/res/layout/alarm_answer_sheet.xml" />
         <option value="$PROJECT_DIR$/src/main/java/com/android/test/ueueueu/alarm_main_app/AnswerSheet.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/android/test/ueueueu/model/Word.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/android/test/ueueueu/model/RepeatedDay.java" />
         <option value="$PROJECT_DIR$/src/main/res/raw/repeatedDay.sql" />
         <option value="$PROJECT_DIR$/src/main/res/raw/repeated_day.sql" />
         <option value="$PROJECT_DIR$/src/main/java/com/android/test/ueueueu/home_page/MainActivity.java" />
         <option value="$PROJECT_DIR$/src/main/res/raw/schedule.sql" />
-        <option value="$PROJECT_DIR$/src/main/java/com/android/test/ueueueu/model/Schedule.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/android/test/ueueueu/helper/DatabaseHelper.java" />
         <option value="$PROJECT_DIR$/../.gitignore" />
+        <option value="$PROJECT_DIR$/src/main/java/com/android/test/ueueueu/model/RepeatedDay.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/android/test/ueueueu/helper/DatabaseHelper.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/android/test/ueueueu/model/Schedule.java" />
       </list>
     </option>
   </component>
@@ -643,26 +642,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/android/test/ueueueu/model/Schedule.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="1" selection-start-line="1" selection-end-line="1" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/android/test/ueueueu/model/RepeatedDay.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="425">
-          <caret line="26" column="47" selection-start-line="26" selection-start-column="47" selection-end-line="26" selection-end-column="47" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/res/raw/schedule.sql">
       <provider selected="true" editor-type-id="text-editor">
         <state>
@@ -684,13 +663,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/android/test/ueueueu/model/Word.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="850">
-          <caret line="51" column="39" selection-start-line="51" selection-start-column="39" selection-end-line="51" selection-end-column="39" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/android/test/ueueueu/home_page/MainActivity.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="697">
@@ -705,10 +677,50 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/android/test/ueueueu/helper/DatabaseHelper.java">
+    <entry file="file://$PROJECT_DIR$/../.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="185">
+          <caret line="71" column="18" lean-forward="true" selection-start-line="71" selection-start-column="18" selection-end-line="71" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.idea/workspace.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="145">
+          <caret line="727" column="16" lean-forward="true" selection-start-line="727" selection-start-column="16" selection-end-line="727" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/android/test/ueueueu/model/Word.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="162">
+          <caret line="51" column="39" selection-start-line="51" selection-start-column="39" selection-end-line="51" selection-end-column="39" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/android/test/ueueueu/model/Schedule.java">
       <provider selected="true" editor-type-id="text-editor">
         <state>
-          <caret column="23" selection-start-column="23" selection-end-column="23" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/android/test/ueueueu/model/RepeatedDay.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="221">
+          <caret line="13" column="47" selection-start-line="13" selection-start-column="47" selection-end-line="13" selection-end-column="47" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/android/test/ueueueu/helper/DatabaseHelper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="264">
+          <caret line="363" lean-forward="true" selection-start-line="363" selection-end-line="363" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="method#insertFromFile#0;class#DatabaseHelper#0" />
@@ -725,13 +737,6 @@
             <element signature="method#getQuiz#0;class#DatabaseHelper#0" />
             <element signature="method#getQuiz#1;class#DatabaseHelper#0" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../.gitignore">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="185">
-          <caret line="71" column="18" lean-forward="true" selection-start-line="71" selection-start-column="18" selection-end-line="71" selection-end-column="18" />
         </state>
       </provider>
     </entry>
