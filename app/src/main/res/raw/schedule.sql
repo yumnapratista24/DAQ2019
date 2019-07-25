@@ -1,1 +1,1 @@
-CREATE TABLE IF NOT EXISTS schedule (id INTEGER PRIMARY KEY autoincrement, time varchar(255) NOT NULL, is_repeat boolean NOT NULL DEFAULT 0, id_method int NOT NULL, is_active boolean NOT NULL DEFAULT 0);
+CREATE TABLE IF NOT EXISTS schedule (id INTEGER PRIMARY KEY autoincrement, time varchar(255) NOT NULL, is_repeat boolean NOT NULL DEFAULT 0, id_method int NOT NULL, number_of_quiz INTEGER NOT NULL DEFAULT 3, is_active boolean NOT NULL DEFAULT 0);

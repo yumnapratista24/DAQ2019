@@ -351,6 +351,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         // insert row
         long id = db.insert(TABLE_SCHEDULE, null, values);
+        schedule.id = (int)id;
 
         // insert day
         for (RepeatedDay repeatedDay : schedule.schedule_repeat_day) {
