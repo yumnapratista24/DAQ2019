@@ -1,4 +1,4 @@
-package com.example.cobadatabase.helper;
+package com.android.test.ueueueu.helper;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
@@ -6,10 +6,11 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
-import com.example.cobadatabase.R;
-import com.example.cobadatabase.model.Schedule;
-import com.example.cobadatabase.model.Surah;
-import com.example.cobadatabase.model.Word;
+import com.android.test.ueueueu.R;
+import com.android.test.ueueueu.model.RepeatedDay;
+import com.android.test.ueueueu.model.Schedule;
+import com.android.test.ueueueu.model.Surah;
+import com.android.test.ueueueu.model.Word;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -17,14 +18,12 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.AbstractCollection;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Random;
-import java.util.Set;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
 
@@ -41,7 +40,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String TABLE_SURAH = "surah";
     private static final String TABLE_WORD = "word";
     private static final String TABLE_SCHEDULE = "schedule";
-    private static final String TABLE_SCHEDULE_REPEAT_DAY = "schedule_repeat_day";
+    private static final String TABLE_SCHEDULE_REPEAT_DAY = "repeated_day";
 
     private Context context;
 
@@ -56,6 +55,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         try {
             int insertCount = insertFromFile(context, R.raw.surah, db);
             insertCount += insertFromFile(context, R.raw.word, db);
+            insertCount += insertFromFile(context, R.raw.schedule, db);
+            insertCount += insertFromFile(context, R.raw.repeated_day, db);
             System.out.println(insertCount);
         } catch (IOException e) {
             e.printStackTrace();
@@ -89,6 +90,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         // create new tables
         onCreate(db);
     }
+
+
 
 
     // -------------------------------------------------------------- \\
@@ -141,6 +144,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         }
         return error_message;
     }
+
+
 
     // WORD
     private List<Word> selectWord(String selectQuery) {
@@ -245,7 +250,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 if (counter > 3) {
                     break;
                 }
-                question += currAyah.get(i).word;
+                question += " " + currAyah.get(i).word;
                 counter++;
             }
 
@@ -281,7 +286,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 if (counter > 3) {
                     break;
                 }
-                question = precedenceAyah.get(i).word + question;
+                question = precedenceAyah.get(i).word + " " + question;
                 counter++;
             }
 
@@ -336,42 +341,109 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return result;
     }
 
+
+
     // TODO : CRUD Schedule
     // CREATE
     public long createSchedule(Schedule schedule) {
         SQLiteDatabase db = this.getWritableDatabase();
-        ContentValues values = new ContentValues();
-        values.put("is_repeat", schedule.is_repeat);
-        values.put("time", schedule.time.toString());
-        values.put("id_method", schedule.id_method);
+        ContentValues values = schedule.getContentValues();
 
         // insert row
         long id = db.insert(TABLE_SCHEDULE, null, values);
 
         // insert day
-        for (int day_id : schedule.schedule_repeat_day) {
-            ContentValues repeated_day = new ContentValues();
-            repeated_day.put("schedule_id", id);
-            repeated_day.put("day", day_id);
+        for (RepeatedDay repeatedDay : schedule.schedule_repeat_day) {
+            ContentValues repeated_day = repeatedDay.getContentValues();
             db.insert(TABLE_SCHEDULE_REPEAT_DAY, null, repeated_day);
         }
 
         return id;
     }
 
-    // TODO : GET Time to next alarm
+    // Dipake anas
+    public long createRepeatedDay(RepeatedDay repeated_day) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues values = repeated_day.getContentValues();
+        long id = db.insert(TABLE_SCHEDULE_REPEAT_DAY, null, values);
+        return id;
+    }
+
+    // Read
+    private List<Schedule> selectSchedule(String selectQuery) {
+        Log.e(LOG, selectQuery);
+
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor c = db.rawQuery(selectQuery, null);
+
+        List<Schedule> schedules = new ArrayList<Schedule>();
+        if (c.moveToFirst()) {
+            do {
+                Schedule schedule = new Schedule(c);
+                schedule.schedule_repeat_day = selectScheduleRepeatedDays(schedule.id, db);
+
+                schedules.add(schedule);
+            } while (c.moveToNext());
+        }
+
+        return schedules;
+    }
+
+    public List<Schedule> selectAllSchedule() {
+        return selectSchedule("SELECT * FROM " + TABLE_SCHEDULE);
+    }
+
+    private List<RepeatedDay> selectRepeatedDay(String selectQuery, SQLiteDatabase db) {
+        Log.e(LOG, selectQuery);
+        Cursor c = db.rawQuery(selectQuery, null);
+
+        List<RepeatedDay> repeatedDays = new ArrayList<RepeatedDay>();
+        if (c.moveToFirst()) {
+            do {
+                RepeatedDay repeatedDay = new RepeatedDay(c);
+
+                repeatedDays.add(repeatedDay);
+            } while (c.moveToNext());
+        }
+
+        return repeatedDays;
+    }
+
+    private List<RepeatedDay> selectScheduleRepeatedDays(int id_schedule, SQLiteDatabase db) {
+        return selectRepeatedDay("SELECT * FROM " + TABLE_SCHEDULE_REPEAT_DAY + " WHERE id_schedule = " + id_schedule, db);
+    }
+
+    // Update
+    public int updateSchedule(Schedule schedule) {
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        ContentValues values = schedule.getContentValues();
+        return db.update(TABLE_SCHEDULE, values, "id = ?",
+                new String[]{String.valueOf(schedule.id)});
+    }
+
+    // DELETE
+    public void deleteSchedule(Schedule schedule) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.delete(TABLE_SCHEDULE, "id = ?",
+                new String[]{String.valueOf(schedule.id)});
+
+        for (RepeatedDay repeated_day: schedule.schedule_repeat_day) {
+            db.delete(TABLE_SCHEDULE_REPEAT_DAY, "id_alarm = ?",
+                    new String[]{String.valueOf(repeated_day.id_alarm)});
+        }
+    }
+
+    // Buat Anas
+    public void deleteRepeatedDay(RepeatedDay repeated_day) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.delete(TABLE_SCHEDULE_REPEAT_DAY, "id_alarm = ?",
+                new String[]{String.valueOf(repeated_day.id_alarm)});
+    }
+
 
     // TODO : !!!CHALLANGE!!! Kalo udh sabi, bikin dah user_log
-    // TODO : !!!CHALLANGE!!! Alar
-
-    /**
-     * Deleting a todo
-     */
-//    public void deleteToDo(long tado_id) {
-//        SQLiteDatabase db = this.getWritableDatabase();
-//        db.delete(TABLE_TODO, KEY_ID + " = ?",
-//                new String[] { String.valueOf(tado_id) });
-//    }
+    // TODO : !!!CHALLANGE!!! Alarm
 
     // closing database
     public void closeDB() {
