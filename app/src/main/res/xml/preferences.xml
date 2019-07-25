@@ -48,7 +48,6 @@
             android:title="@string/pref_feedback">
 
         </Preference>
-
     </PreferenceCategory>
 
 </PreferenceScreen>
