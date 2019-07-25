@@ -52,22 +52,31 @@ public class SurahGetter extends BaseAdapter {
 
         CheckBox surat = view.findViewById(R.id.nama_surat);
 
+        if(list_surah.get(position).is_choosen){
+            surat.setChecked(true);
+        }
+
         surat.setText(list_surah.get(position).surah_name);
 
         surat.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean bool) {
                 Surah surah = list_surah.get(position);
-                // Do something
-                dbHelper.updateSurah(surah);
+
                 if(bool == false) {
+                    surah.is_choosen = false;
+                    // Do something
                     Log.i("CEK FALSE", surah.surah_name + " " + surah.is_choosen);
                     Toast.makeText(context, surah.surah_name + " is not choosen", Toast.LENGTH_SHORT).show();
                 }
                 else {
+                    surah.is_choosen = true;
+                    // Do something
                     Log.i("CEK TRUE", surah.surah_name + " " + surah.is_choosen);
                     Toast.makeText(context, surah.surah_name + " is choosen", Toast.LENGTH_SHORT).show();
                 }
+
+                dbHelper.updateSurah(surah);
 
             }
         });
