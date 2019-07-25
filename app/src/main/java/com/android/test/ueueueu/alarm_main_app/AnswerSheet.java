@@ -18,15 +18,20 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.test.ueueueu.R;
+import com.android.test.ueueueu.helper.DatabaseHelper;
+import com.android.test.ueueueu.model.Surah;
 
 import org.w3c.dom.Text;
 
 import java.security.Key;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -35,7 +40,10 @@ import java.util.Map;
 
 public class AnswerSheet extends Activity {
 
-    Map<String,String> dict = new HashMap<>();
+    private HashMap<String,String> dict = new HashMap<>();
+    private DatabaseHelper dbHelper;
+    private List<HashMap<String,String>> quizzes;
+    private AlertDialog alertDialog;
 
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
@@ -55,44 +63,57 @@ public class AnswerSheet extends Activity {
         super.onCreate(savedInstanceState);
         LayoutInflater layoutInflater = getLayoutInflater();
 
+        dbHelper = new DatabaseHelper(this);
+
+        Surah surah = dbHelper.getAllSurah().get(0);
+
+        surah.is_choosen = true;
+
+        dbHelper.updateSurah(surah);
+        dbHelper.updateSurah(dbHelper.getAllSurah().get(1));
+        dbHelper.updateSurah(dbHelper.getAllSurah().get(2));
+        dbHelper.updateSurah(dbHelper.getAllSurah().get(3));
+
+        quizzes = dbHelper.getQuiz(1);
+
+        dict = quizzes.get(0);
+
+        String kunjaw = dict.get("answer");
+        Log.i("KUNJAW CUKK",kunjaw);
         int jawaban;
 
-        dict.put("A","BAMBANG");
-        dict.put("B","BAMBANG");
-        dict.put("C","BAMBANG");
-        dict.put("D","BAMBANG");
-        dict.put("kunjaw","A");
-        String kunjaw = dict.get("kunjaw");
-
-        if(kunjaw == "A") jawaban = R.id.A;
-        else if(kunjaw == "B") jawaban = R.id.B;
-        else if(kunjaw == "C") jawaban = R.id.C;
-        else if(kunjaw == "D") jawaban = R.id.D;
-        else jawaban = 0;
-
-//
-//        //before inflating the custom alert dialog layout, we will get the current activity viewgroup
-//        ViewGroup viewGroup = findViewById(android.R.id.content);
-
-        //then we will inflate the custom alert dialog xml that we created
+        if(kunjaw.equals("0")) jawaban = R.id.A;
+        else if(kunjaw.equals("1")) jawaban = R.id.B;
+        else if(kunjaw.equals("2")) jawaban = R.id.C;
+        else if(kunjaw.equals("3")) jawaban = R.id.D;
+        else jawaban = 20000;
 
         Intent intent = getIntent();
         String waktu = intent.getStringExtra("waktu");
 
         View dialogView = layoutInflater.inflate(R.layout.alarm_answer_sheet, null);
 
+        // set nama surat dan ayat
+        TextView namaSuratAyat = (TextView) dialogView.findViewById(R.id.nama_surat_ayat);
+        namaSuratAyat.setText("Surat " + dict.get("surah_name") + " ayat " + dict.get("no_ayah"));
+
+        // set soal
+        TextView soal = (TextView) dialogView.findViewById(R.id.soal);
+        soal.setText(dict.get("question"));
+        RadioButton radioA = (RadioButton) dialogView.findViewById((R.id.A));
+        radioA.setText(dict.get("option_0"));
+        RadioButton radioB = (RadioButton) dialogView.findViewById((R.id.B));
+        radioB.setText(dict.get("option_1"));
+        RadioButton radioC = (RadioButton) dialogView.findViewById((R.id.C));
+        radioC.setText(dict.get("option_2"));
+        RadioButton radioD = (RadioButton) dialogView.findViewById((R.id.D));
+        radioD.setText(dict.get("option_3"));
+
+        // set jawaban
         setJawaban(jawaban, dialogView);
 
         TextView tekswaktu = dialogView.findViewById(R.id.waktu);
         tekswaktu.setText(waktu);
-
-//        Button buttonOk = dialogView.findViewById(R.id.buttonOk);
-//        buttonOk.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                finish();
-//            }
-//        });
 
         //Now we need an AlertDialog.Builder object
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
@@ -101,7 +122,7 @@ public class AnswerSheet extends Activity {
         builder.setView(dialogView);
 
         //finally creating the alert dialog and displaying it
-        AlertDialog alertDialog = builder.create();
+        alertDialog = builder.create();
         alertDialog.setCanceledOnTouchOutside(false);
         alertDialog.setCancelable(false);
 
@@ -118,15 +139,12 @@ public class AnswerSheet extends Activity {
             @Override
             public void onCheckedChanged(RadioGroup radioGroup, int i) {
                 if(i == jawaban){
+                    Toast.makeText(AnswerSheet.this, "BENER CUKK", Toast.LENGTH_SHORT).show();
                     Log.i("JAWABAN","SUCCESS");
-                    Handler handler = new Handler();
-                    handler.postDelayed(new Runnable() {
-                        @Override
-                        public void run() {
-                            finish();
-                        }
-                    }, 1000);
+                    alertDialog.dismiss();
+                    finish();
                 } else{
+                    Toast.makeText(AnswerSheet.this, "SALAH CUKK " + jawaban + " bukan " + i, Toast.LENGTH_SHORT).show();
                     Log.i("JAWABAN","SALAHH CUKKK");
                 }
             }

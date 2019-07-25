@@ -1,4 +1,4 @@
-package com.example.cobadatabase.model;
+package com.android.test.ueueueu.model;
 
 import java.sql.Time;
 import java.util.Calendar;

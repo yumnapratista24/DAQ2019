@@ -15,6 +15,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.CompoundButton;
+import android.widget.Switch;
 import android.widget.TextView;
 
 import com.android.test.ueueueu.R;
@@ -44,8 +46,8 @@ public class CustomAdapter extends ArrayAdapter<DataModel> implements View.OnCli
     // View lookup cache
     private static class ViewHolder {
         TextView time;
-        Button alarm_on, alarm_off, delete_row;
-        // initialize alarm manager
+        Button delete_row;
+        Switch alarm_on_off;
     }
 
     public CustomAdapter(ArrayList<DataModel> data, Context context, LayoutInflater mInflator, Activity mActivity) {
@@ -75,6 +77,7 @@ public class CustomAdapter extends ArrayAdapter<DataModel> implements View.OnCli
 
         // Get the data item for this position
         final DataModel dataModel = getItem(position);
+
         // Check if an existing view is being reused, otherwise inflate the view
         final ViewHolder viewHolder; // view lookup cache stored in tag
 
@@ -86,8 +89,7 @@ public class CustomAdapter extends ArrayAdapter<DataModel> implements View.OnCli
             LayoutInflater inflater = LayoutInflater.from(getContext());
             convertView = inflater.inflate(R.layout.row_item, parent, false);
             viewHolder.time = (TextView) convertView.findViewById(R.id.textView);
-            viewHolder.alarm_on = (Button) convertView.findViewById(R.id.alarm_on);
-            viewHolder.alarm_off = (Button) convertView.findViewById(R.id.alarm_off);
+            viewHolder.alarm_on_off = (Switch) convertView.findViewById(R.id.alarm_on_off);
             viewHolder.delete_row = (Button) convertView.findViewById(R.id.delete);
 
             result=convertView;
@@ -97,10 +99,6 @@ public class CustomAdapter extends ArrayAdapter<DataModel> implements View.OnCli
             viewHolder = (ViewHolder) convertView.getTag();
             result=convertView;
         }
-
-
-        // set alarm button on or off
-        viewHolder.alarm_on.setVisibility(View.INVISIBLE);
 
         lastPosition = position;
 
@@ -159,15 +157,15 @@ public class CustomAdapter extends ArrayAdapter<DataModel> implements View.OnCli
 
         viewHolder.time.setText(hour_string + ':' + minute_string);
 
-        if(button_on_or_off.equals("ONN")) {
-            viewHolder.alarm_on.setVisibility(View.INVISIBLE);
-            viewHolder.alarm_off.setVisibility(View.VISIBLE);
-        }
-        //if(button_on_or_off.equals("OFF")) {
-        //    viewHolder.alarm_on.setVisibility(View.VISIBLE);
-        //    viewHolder.alarm_off.setVisibility(View.INVISIBLE);
-        //}
-
+        viewHolder.alarm_on_off.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked) {
+                    viewHolder.alarm_on_off.setChecked(false);
+                } else {
+                    viewHolder.alarm_on_off.setChecked(false);
+                }
+            }
+        });
 
         viewHolder.delete_row.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -176,19 +174,19 @@ public class CustomAdapter extends ArrayAdapter<DataModel> implements View.OnCli
                 SharedPreferences ex1 = getContext().getSharedPreferences(PREFS, 0);
                 String c = ex1.getString("message","empty");
 
-                    String ghi = dataModel.getTime();
-                    SharedPreferences.Editor editor12 = ex1.edit();
-                    String lm[] = c.split(" ");
-                    String fs = "";
-                    for (int y5 = 0; y5 < lm.length; y5++) {
-                        if (!lm[y5].equals(ghi))
-                            fs = fs + lm[y5] + " ";
-                    }
-                    editor12.putString("message", fs);
-                    editor12.commit();
+                String ghi = dataModel.getTime();
+                SharedPreferences.Editor editor12 = ex1.edit();
+                String lm[] = c.split(" ");
+                String fs = "";
+                for (int y5 = 0; y5 < lm.length; y5++) {
+                    if (!lm[y5].equals(ghi))
+                        fs = fs + lm[y5] + " ";
+                }
+                editor12.putString("message", fs);
+                editor12.commit();
 
-                    dataSet.remove(position);
-                    notifyDataSetChanged();
+                dataSet.remove(position);
+                notifyDataSetChanged();
             }
         });
 

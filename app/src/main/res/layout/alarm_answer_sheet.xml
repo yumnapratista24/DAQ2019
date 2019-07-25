@@ -27,56 +27,57 @@
         android:padding="16dp">
 
         <TextView
+            android:id="@+id/nama_surat_ayat"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="NAMA SURAT/AYAT"
             android:textAlignment="center"
-            android:textAppearance="@style/TextAppearance.AppCompat.Headline" />
+            android:textSize="20dp"/>
 
         <TextView
+            android:id="@+id/soal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
+            android:textSize="30dp"
+            android:textColor="@android:color/black"
             android:layout_gravity="center"
             android:text="SOALNYEEEE"
             android:gravity="center"/>
 
         <RadioGroup
             android:id="@+id/jawaban"
+            android:layout_marginTop="20dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" >
 
             <RadioButton
                 android:id="@+id/A"
+                android:textSize="20dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="JAWABAN LOOO BROO"/>
             <RadioButton
                 android:id="@+id/B"
+                android:textSize="20dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="JAWABAN LOOO BROO"/>
+
             <RadioButton
                 android:id="@+id/C"
+                android:textSize="20dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="JAWABAN LOOO BROO" />
             <RadioButton
                 android:id="@+id/D"
+                android:textSize="20dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="JAWABAN LOOO BROO"/>
 
         </RadioGroup>
 
-
-        <Button
-            android:id="@+id/buttonOk"
-            android:layout_width="200dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginTop="15dp"
-            android:text="Ok"
-            android:textColor="@color/colorPrimary" />
     </LinearLayout>
 </LinearLayout>

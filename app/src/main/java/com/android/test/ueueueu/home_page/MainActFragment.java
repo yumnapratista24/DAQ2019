@@ -7,6 +7,7 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
+import android.support.v7.preference.Preference;
 import android.support.v7.preference.PreferenceFragmentCompat;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,6 +17,8 @@ import android.widget.ListView;
 import com.android.test.ueueueu.R;
 import com.android.test.ueueueu.alarm_main_app.AlarmEditor;
 import com.android.test.ueueueu.model.DataModel;
+import com.android.test.ueueueu.pilih_surat.PilihSurat;
+
 import static com.android.test.ueueueu.home_page.MainActivity.PREFS;
 
 import java.util.ArrayList;
@@ -78,6 +81,16 @@ public class MainActFragment {
         @Override
         public void onCreatePreferences(Bundle savedInstanceState, String rootKey){
             setPreferencesFromResource(R.xml.preferences, rootKey);
+
+            final Preference pilih_surat = findPreference("pilih_surat");
+            pilih_surat.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
+                @Override
+                public boolean onPreferenceClick(Preference preference) {
+                    Intent intent = new Intent(getActivity(), PilihSurat.class);
+                    startActivity(intent);
+                    return true;
+                }
+            });
         }
     }
 }
