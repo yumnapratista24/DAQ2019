@@ -147,9 +147,10 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/android/test/ueueueu/helper/DatabaseHelper.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="255">
-              <caret line="15" column="25" selection-start-line="15" selection-start-column="25" selection-end-line="15" selection-end-column="25" />
+            <state>
+              <caret column="23" selection-start-column="23" selection-end-column="23" />
               <folding>
+                <element signature="imports" expanded="true" />
                 <element signature="method#insertFromFile#0;class#DatabaseHelper#0" />
                 <element signature="method#onUpgrade#0;class#DatabaseHelper#0" />
                 <element signature="method#selectSurah#0;class#DatabaseHelper#0" />
@@ -169,10 +170,10 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/../.gitignore">
+        <entry file="file://$PROJECT_DIR$/.idea/workspace.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="185">
-              <caret line="71" column="18" lean-forward="true" selection-start-line="71" selection-start-column="18" selection-end-line="71" selection-end-column="18" />
+            <state relative-caret-position="332">
+              <caret line="792" column="10" lean-forward="true" selection-start-line="792" selection-start-column="10" selection-end-line="792" selection-end-column="10" />
             </state>
           </provider>
         </entry>
@@ -180,8 +181,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/android/test/ueueueu/home_page/MainActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="204">
-              <caret line="39" column="38" selection-start-line="39" selection-start-column="38" selection-end-line="39" selection-end-column="38" />
+            <state relative-caret-position="697">
+              <caret line="42" column="38" selection-start-line="42" selection-start-column="38" selection-end-line="42" selection-end-column="38" />
             </state>
           </provider>
         </entry>
@@ -507,7 +508,7 @@
     <editor active="true" />
     <layout>
       <window_info id="Captures" order="0" side_tool="true" weight="0.25" />
-      <window_info content_ui="combo" id="Project" order="1" visible="true" weight="0.204236" />
+      <window_info content_ui="combo" id="Project" order="1" visible="true" weight="0.20404859" />
       <window_info id="Structure" order="2" side_tool="true" />
       <window_info id="Build Variants" order="3" side_tool="true" />
       <window_info id="Image Layers" order="4" />
@@ -539,8 +540,8 @@
     <entry file="file://$PROJECT_DIR$/src/main/res/layout/activity_pilih_surat.xml">
       <provider editor-type-id="android-designer2" />
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="8" column="47" selection-start-line="8" selection-start-column="47" selection-end-line="8" selection-end-column="47" />
+        <state relative-caret-position="153">
+          <caret line="9" selection-end-line="10" selection-end-column="15" />
         </state>
       </provider>
     </entry>
@@ -585,8 +586,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/android/test/ueueueu/home_page/CustomAdapter.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2720">
-          <caret line="190" selection-start-line="190" selection-end-line="190" />
+        <state relative-caret-position="233">
+          <caret line="82" column="9" selection-start-line="82" selection-start-column="9" selection-end-line="82" selection-end-column="9" />
         </state>
       </provider>
     </entry>
@@ -642,13 +643,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/res/raw/word.sql">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret column="174" lean-forward="true" selection-start-column="174" selection-end-column="242" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/android/test/ueueueu/model/Schedule.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="17">
@@ -699,8 +693,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/android/test/ueueueu/home_page/MainActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="39" column="38" selection-start-line="39" selection-start-column="38" selection-end-line="39" selection-end-column="38" />
+        <state relative-caret-position="697">
+          <caret line="42" column="38" selection-start-line="42" selection-start-column="38" selection-end-line="42" selection-end-column="38" />
         </state>
       </provider>
     </entry>
@@ -713,9 +707,10 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/android/test/ueueueu/helper/DatabaseHelper.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="15" column="25" selection-start-line="15" selection-start-column="25" selection-end-line="15" selection-end-column="25" />
+        <state>
+          <caret column="23" selection-start-column="23" selection-end-column="23" />
           <folding>
+            <element signature="imports" expanded="true" />
             <element signature="method#insertFromFile#0;class#DatabaseHelper#0" />
             <element signature="method#onUpgrade#0;class#DatabaseHelper#0" />
             <element signature="method#selectSurah#0;class#DatabaseHelper#0" />

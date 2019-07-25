@@ -1,6 +1,8 @@
 package com.android.test.ueueueu.home_page;
 
 import android.annotation.TargetApi;
+import android.app.Activity;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
@@ -24,6 +26,7 @@ import com.android.test.ueueueu.home_page.MainActFragment.ListOfAlarm;
 import com.android.test.ueueueu.home_page.MainActFragment.AppSettings;
 import com.android.test.ueueueu.R;
 import com.android.test.ueueueu.model.DataModel;
+import com.android.test.ueueueu.pilih_surat.PilihSurat;
 
 import java.util.ArrayList;
 
@@ -39,8 +42,42 @@ public class MainActivity extends AppCompatActivity {
         DatabaseHelper db_helper = new DatabaseHelper(this);
         db_helper.selectAllSchedule();
         setContentView(R.layout.activity_main);
-        setupApp();
+        SharedPreferences sp = getSharedPreferences("onboarding",MODE_PRIVATE);
 
+        // Dev mode biar selalu muncul yang pertama kali
+        sp.edit().clear();
+
+        Boolean first_timer = sp.getBoolean("first_timer",false);
+
+        // On boarding app
+        if(!first_timer) {
+            showOnBoarding();
+            sp.edit().putBoolean("first_timer",true);
+        }
+        // Not first timer
+        setupApp();
+    }
+
+
+    private void showOnBoarding(){
+        showAlertBeforeBoarding(this);
+    }
+
+    private void showAlertBeforeBoarding(final Activity activity){
+        final PilihSurat ps = new PilihSurat();
+
+        final AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
+
+        alertDialogBuilder.setTitle("Silahkan isi surat hafalanmu terlebih dahulu!");
+        alertDialogBuilder.setPositiveButton("Okay",
+                new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        dialogInterface.dismiss();
+                        ps.showFirstTimer(activity);
+                    }
+                });
+        alertDialogBuilder.show();
     }
 
     public void setupApp(){
