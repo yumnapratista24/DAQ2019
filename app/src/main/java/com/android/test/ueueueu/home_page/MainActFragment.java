@@ -84,8 +84,8 @@ public class MainActFragment {
         public void onCreatePreferences(Bundle savedInstanceState, String rootKey){
             setPreferencesFromResource(R.xml.preferences, rootKey);
 
-            Preference prf = findPreference("pilih_surat");
-            prf.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
+            final Preference pilih_surat = findPreference("pilih_surat");
+            pilih_surat.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
                 @Override
                 public boolean onPreferenceClick(Preference preference) {
                     Intent intent = new Intent(getActivity(), PilihSurat.class);
