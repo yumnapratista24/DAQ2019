@@ -40,9 +40,9 @@ public class PilihSurat extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_pilih_surat);
         View view = getLayoutInflater().inflate(R.layout.activity_pilih_surat, null);
         renderSurah(view);
+        setContentView(view);
     }
 
     public void showFirstTimer(Activity activity){
