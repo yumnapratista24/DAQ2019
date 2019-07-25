@@ -124,7 +124,7 @@
         <entry file="file://$PROJECT_DIR$/src/main/java/com/android/test/ueueueu/model/Schedule.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="332">
-              <caret line="62" selection-start-line="62" selection-end-line="62" />
+              <caret line="65" selection-start-line="65" selection-end-line="65" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -184,7 +184,7 @@
         <entry file="file://$PROJECT_DIR$/src/main/java/com/android/test/ueueueu/helper/DatabaseHelper.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="213">
-              <caret line="392" column="40" selection-start-line="392" selection-start-column="40" selection-end-line="392" selection-end-column="40" />
+              <caret line="395" column="40" selection-start-line="395" selection-start-column="40" selection-end-line="395" selection-end-column="40" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="method#insertFromFile#0;class#DatabaseHelper#0" />
@@ -565,10 +565,9 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="754" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info id="Captures" order="0" side_tool="true" weight="0.25" />
-      <window_info active="true" content_ui="combo" id="Project" order="1" visible="true" weight="0.204236" />
+      <window_info content_ui="combo" id="Project" order="1" visible="true" weight="0.204236" />
       <window_info id="Structure" order="2" side_tool="true" />
       <window_info id="Build Variants" order="3" side_tool="true" />
       <window_info id="Image Layers" order="4" />
@@ -576,7 +575,7 @@
       <window_info id="Resources Explorer" order="6" />
       <window_info id="Capture Tool" order="7" />
       <window_info id="Favorites" order="8" side_tool="true" />
-      <window_info anchor="bottom" id="Run" order="0" visible="true" weight="0.294686" />
+      <window_info active="true" anchor="bottom" id="Run" order="0" visible="true" weight="0.294686" />
       <window_info anchor="bottom" id="Logcat" order="1" weight="0.3289689" />
       <window_info anchor="bottom" id="TODO" order="2" />
       <window_info anchor="bottom" id="Android Profiler" order="3" />
@@ -767,7 +766,7 @@
     <entry file="file://$PROJECT_DIR$/src/main/java/com/android/test/ueueueu/model/Schedule.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="332">
-          <caret line="62" selection-start-line="62" selection-end-line="62" />
+          <caret line="65" selection-start-line="65" selection-end-line="65" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -777,7 +776,7 @@
     <entry file="file://$PROJECT_DIR$/src/main/java/com/android/test/ueueueu/helper/DatabaseHelper.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="213">
-          <caret line="392" column="40" selection-start-line="392" selection-start-column="40" selection-end-line="392" selection-end-column="40" />
+          <caret line="395" column="40" selection-start-line="395" selection-start-column="40" selection-end-line="395" selection-end-column="40" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="method#insertFromFile#0;class#DatabaseHelper#0" />
