@@ -21,6 +21,7 @@ import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.TimePicker;
 
+import com.android.test.ueueueu.helper.DatabaseHelper;
 import com.android.test.ueueueu.home_page.MainActFragment.ListOfAlarm;
 import com.android.test.ueueueu.home_page.MainActFragment.AppSettings;
 import com.android.test.ueueueu.R;
@@ -38,6 +39,8 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        DatabaseHelper db_helper = new DatabaseHelper(this);
+        db_helper.selectAllSchedule();
         setContentView(R.layout.activity_main);
         SharedPreferences sp = getSharedPreferences("onboarding",MODE_PRIVATE);
 

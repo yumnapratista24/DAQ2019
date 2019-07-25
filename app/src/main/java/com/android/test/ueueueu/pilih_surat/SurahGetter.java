@@ -51,6 +51,7 @@ public class SurahGetter extends BaseAdapter {
         view = inflater.inflate(R.layout.layout_baris_surat,null);
 
         CheckBox surat = view.findViewById(R.id.nama_surat);
+        if(list_surah.get(position).is_choosen) surat.setChecked(true);
 
         if(list_surah.get(position).is_choosen){
             surat.setChecked(true);
