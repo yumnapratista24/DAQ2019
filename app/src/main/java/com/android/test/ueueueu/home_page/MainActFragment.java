@@ -16,12 +16,15 @@ import android.widget.ListView;
 
 import com.android.test.ueueueu.R;
 import com.android.test.ueueueu.alarm_main_app.AlarmEditor;
+import com.android.test.ueueueu.helper.DatabaseHelper;
 import com.android.test.ueueueu.model.DataModel;
+import com.android.test.ueueueu.model.Schedule;
 import com.android.test.ueueueu.pilih_surat.PilihSurat;
 
 import static com.android.test.ueueueu.home_page.MainActivity.PREFS;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by 642174 on 10/06/2019.
@@ -43,11 +46,13 @@ public class MainActFragment {
                 }
             });
 
-
-
             ListView listView = (ListView) list_of_alarm.findViewById(R.id.list_of_alarm);
 
-            ArrayList<DataModel> dataModels = new ArrayList<>();
+            DatabaseHelper dbHelper = new DatabaseHelper(this);
+
+            List<Schedule> list_alarm = dbHelper.selectAllSchedule();
+
+
 
             SharedPreferences alarm_db = this.getActivity().getSharedPreferences(PREFS, Context.MODE_PRIVATE);
             String db_checker = alarm_db.getString("message", "empty");

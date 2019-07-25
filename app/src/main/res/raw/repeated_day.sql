@@ -1,0 +1,1 @@
+CREATE TABLE IF NOT EXISTS repeated_day (id_alarm int NOT NULL, id_schedule int NOT NULL, day int NOT NULL, PRIMARY KEY (id_alarm), FOREIGN KEY (id_schedule) REFERENCES schedule(id));

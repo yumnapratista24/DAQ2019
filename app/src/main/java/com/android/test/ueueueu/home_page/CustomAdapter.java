@@ -160,7 +160,7 @@ public class CustomAdapter extends ArrayAdapter<DataModel> implements View.OnCli
         viewHolder.alarm_on_off.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
-                    viewHolder.alarm_on_off.setChecked(false);
+                    viewHolder.alarm_on_off.setChecked(true);
                 } else {
                     viewHolder.alarm_on_off.setChecked(false);
                 }
