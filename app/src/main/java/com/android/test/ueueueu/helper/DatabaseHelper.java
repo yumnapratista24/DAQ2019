@@ -31,7 +31,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String LOG = DatabaseHelper.class.getName();
 
     // Database Version
-    private static final int DATABASE_VERSION = 2;
+    private static final int DATABASE_VERSION = 3;
 
     // Database Name
     private static final String DATABASE_NAME = "ingetQuran";
@@ -351,9 +351,11 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         // insert row
         long id = db.insert(TABLE_SCHEDULE, null, values);
+        schedule.id = (int)id;
 
         // insert day
         for (RepeatedDay repeatedDay : schedule.schedule_repeat_day) {
+            repeatedDay.id_schedule = schedule.id;
             ContentValues repeated_day = repeatedDay.getContentValues();
             db.insert(TABLE_SCHEDULE_REPEAT_DAY, null, repeated_day);
         }
@@ -362,8 +364,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
     // Dipake anas
-    public long createRepeatedDay(RepeatedDay repeated_day) {
+    public long createRepeatedDay(Schedule schedule, RepeatedDay repeated_day) {
         SQLiteDatabase db = this.getWritableDatabase();
+        repeated_day.id_schedule = schedule.id;
         ContentValues values = repeated_day.getContentValues();
         long id = db.insert(TABLE_SCHEDULE_REPEAT_DAY, null, values);
         return id;

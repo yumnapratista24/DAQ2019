@@ -92,7 +92,6 @@ public class AlarmEditor extends AppCompatActivity {
 
 
         alarmManager = (AlarmManager) this.getSystemService(this.ALARM_SERVICE);
-        getSupportFragmentManager().beginTransaction().add(R.id.alarm_preferences, new Alarm_editor_settings()).commit();
     }
 
     public void toggleOnCLick(View view){
@@ -137,15 +136,15 @@ public class AlarmEditor extends AppCompatActivity {
         String ans = hour + ':' + minute;
 
         DateFormat formatter = new SimpleDateFormat("HH:mm");
-        Time waktuALarm = new Time(jam);
+        Time waktuAlarm = new Time(jam);
         try {
-            waktuALarm = new Time(formatter.parse(waktu).getTime());
+            waktuAlarm = new Time(formatter.parse(waktu).getTime());
         }
         catch (ParseException e) {
             e.printStackTrace();
         }
 
-        Log.i("Waktu alarm adalah", waktuALarm.toString());
+        Log.i("Waktu alarm adalah", waktuAlarm.toString());
 
         // get all selected days and create repeated day
         List<DayModel> listSelectedDays = getSelectedDays();
@@ -154,21 +153,36 @@ public class AlarmEditor extends AppCompatActivity {
             int idAlarm = Integer.parseInt(String.format("%040d", new BigInteger(UUID.randomUUID().toString().replace("-", ""), 16)).substring(0,9));
             RepeatedDay repeatedDay = new RepeatedDay(0, idAlarm, listSelectedDays.get(i).idDay);
             listAlarmRepeat.add(repeatedDay);
+
+            Calendar today = Calendar.getInstance();
+            if (repeatedDay.day < today.DAY_OF_WEEK) {
+                calendar.add(Calendar.WEEK_OF_YEAR, 1);
+            }
+            else if (repeatedDay.day == today.DAY_OF_WEEK && (calendar.HOUR_OF_DAY < today.HOUR_OF_DAY || today.HOUR_OF_DAY == calendar.HOUR_OF_DAY
+             && calendar.MINUTE < today.MINUTE)) {
+                calendar.add(Calendar.WEEK_OF_YEAR, 1);
+            }
+
             pendingIntent = PendingIntent.getBroadcast(this, idAlarm, myIntent, 0);
             calendar.set(Calendar.DAY_OF_WEEK, repeatedDay.day);
+            Log.i("sekarang tanggal: ", calendar.toString());
             alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), AlarmManager.INTERVAL_DAY * 7, pendingIntent);
         }
 
         // create database schedule
-        Schedule schedule = new Schedule(waktuALarm, true, true, listAlarmRepeat);
+        Schedule schedule = new Schedule(waktuAlarm, true, numberPicker.getValue(),true, listAlarmRepeat);
         dbHelper = new DatabaseHelper(this);
         dbHelper.createSchedule(schedule);
 
         List<Schedule> list_alarm = dbHelper.selectAllSchedule();
 
+        Log.i("ListAlarm:", list_alarm.toString());
+        Log.i("ListAlarm:", list_alarm.get(0).time.toString());
+
+
         // buat alarm
 
-        ListOfAlarm.adapter.add(new DataModel(ans));
+        ListOfAlarm.adapter.add(schedule);
 
         ListOfAlarm.adapter.notifyDataSetChanged();
 

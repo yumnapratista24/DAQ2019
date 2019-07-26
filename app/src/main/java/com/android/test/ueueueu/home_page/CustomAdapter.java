@@ -6,6 +6,9 @@ import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import android.os.Build;
 import android.support.annotation.RequiresApi;
@@ -21,9 +24,13 @@ import android.widget.TextView;
 
 import com.android.test.ueueueu.R;
 import com.android.test.ueueueu.alarm_main_app.AlarmReceiver;
+import com.android.test.ueueueu.helper.DatabaseHelper;
 import com.android.test.ueueueu.model.DataModel;
+import com.android.test.ueueueu.model.RepeatedDay;
+import com.android.test.ueueueu.model.Schedule;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import static android.content.Context.ALARM_SERVICE;
 import static com.android.test.ueueueu.home_page.MainActivity.PREFS;
@@ -32,10 +39,10 @@ import static com.android.test.ueueueu.home_page.MainActivity.PREFS;
  * Created by Mehul Garg on 09-10-2017.
  */
 
-public class CustomAdapter extends ArrayAdapter<DataModel> implements View.OnClickListener{
+public class CustomAdapter extends ArrayAdapter<Schedule> implements View.OnClickListener{
 
     private static final int MY_PERMISSIONS_REQUEST_READ_CONTACTS = 0;
-    private ArrayList<DataModel> dataSet;
+    private List<Schedule> dataSet;
     Context mContext;
 
     AlarmManager alarm_manager;
@@ -50,7 +57,7 @@ public class CustomAdapter extends ArrayAdapter<DataModel> implements View.OnCli
         Switch alarm_on_off;
     }
 
-    public CustomAdapter(ArrayList<DataModel> data, Context context, LayoutInflater mInflator, Activity mActivity) {
+    public CustomAdapter(List<Schedule> data, Context context, LayoutInflater mInflator, Activity mActivity) {
         super(context, R.layout.row_item, data);
         this.dataSet = data;
         this.mInflator = mInflator;
@@ -64,8 +71,9 @@ public class CustomAdapter extends ArrayAdapter<DataModel> implements View.OnCli
 
         int position=(Integer) v.getTag();
         Object object= getItem(position);
-        DataModel dataModel=(DataModel)object;
+        Schedule dataModel= (Schedule)object;
     }
+
 
     private int lastPosition = -1;
 
@@ -76,7 +84,7 @@ public class CustomAdapter extends ArrayAdapter<DataModel> implements View.OnCli
         alarm_manager = (AlarmManager) getContext().getSystemService(ALARM_SERVICE);
 
         // Get the data item for this position
-        final DataModel dataModel = getItem(position);
+        final Schedule alarm = getItem(position);
 
         // Check if an existing view is being reused, otherwise inflate the view
         final ViewHolder viewHolder; // view lookup cache stored in tag
@@ -108,54 +116,13 @@ public class CustomAdapter extends ArrayAdapter<DataModel> implements View.OnCli
         //create an intent to Alarm receiver class
         final Intent my_intent = new Intent(getContext(), AlarmReceiver.class);
 
-        String abcd = dataModel.getTime();
 
-        int l = abcd.indexOf(':');
-        int ll = abcd.lastIndexOf(':');
-        int yui;
+        DateFormat format = new SimpleDateFormat("HH:mm");
 
-        for(yui = l+1; yui < abcd.length(); yui++)
-            if(abcd.charAt(yui)==':')
-                break;
+        String alarm_time_text = format.format(alarm.time);
 
-        String opqw, button_on_or_off;
 
-        final int hour = Integer.parseInt(abcd.substring(0,l));
-        if(ll==l) {
-            opqw = abcd.substring(l + 1);
-            button_on_or_off = "";
-        }
-        else {
-            opqw = abcd.substring(l + 1, yui);
-            button_on_or_off = abcd.substring(yui + 1);
-        }
-
-        Log.d("Tag :: ", opqw);
-        final int minute = Integer.parseInt(opqw);
-
-        // convert int to string
-        String hour_string = String.valueOf(hour);
-        String minute_string = String.valueOf(minute);
-
-        // String button_on_or_off = abcd.substring(ll+1);
-        // if(button_on_or_off.equals(minute_string))
-        // button_on_or_off = "";
-
-        Log.d("Tag button :: ",button_on_or_off);
-
-        if (hour > 12) {
-            hour_string = String.valueOf(hour - 12);
-        }
-        if (hour == 0) {
-            hour_string = "00";
-        }
-        if (minute < 10) {
-            minute_string = "0" + String.valueOf(minute);
-        }
-
-        final String hjk = hour_string + ':' + minute_string;
-
-        viewHolder.time.setText(hour_string + ':' + minute_string);
+        viewHolder.time.setText(alarm_time_text);
 
         viewHolder.alarm_on_off.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
@@ -167,23 +134,28 @@ public class CustomAdapter extends ArrayAdapter<DataModel> implements View.OnCli
             }
         });
 
+        Log.i("Ancol2", mActivity.toString());
         viewHolder.delete_row.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Schedule alarm_delete = getItem(position);
 
-                SharedPreferences ex1 = getContext().getSharedPreferences(PREFS, 0);
-                String c = ex1.getString("message","empty");
+                List<RepeatedDay> list_delete_repeatDay = alarm_delete.schedule_repeat_day;
+                for (int i = 0 ; i < list_delete_repeatDay.size(); i++) {
 
-                String ghi = dataModel.getTime();
-                SharedPreferences.Editor editor12 = ex1.edit();
-                String lm[] = c.split(" ");
-                String fs = "";
-                for (int y5 = 0; y5 < lm.length; y5++) {
-                    if (!lm[y5].equals(ghi))
-                        fs = fs + lm[y5] + " ";
+                    PendingIntent pendingIntent = PendingIntent.getBroadcast(mActivity.getApplicationContext(),
+                            list_delete_repeatDay.get(i).id_alarm, my_intent, PendingIntent.FLAG_CANCEL_CURRENT);
+
+                    alarm_manager.cancel(pendingIntent);
                 }
-                editor12.putString("message", fs);
-                editor12.commit();
+
+                DatabaseHelper dbHelper = new DatabaseHelper(mActivity.getApplicationContext());
+
+                for (Schedule data : dbHelper.selectAllSchedule()){
+                    if (data.id == getItem(position).id){
+                        dbHelper.deleteSchedule(data);
+                    }
+                }
 
                 dataSet.remove(position);
                 notifyDataSetChanged();

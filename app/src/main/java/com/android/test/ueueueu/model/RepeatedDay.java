@@ -11,6 +11,11 @@ public class RepeatedDay {
     public RepeatedDay() {
     }
 
+    public RepeatedDay(int id_alarm, int day) {
+        this.id_alarm = id_alarm;
+        this.day = day;
+    }
+
     public RepeatedDay(int id_schedule, int id_alarm, int day) {
         this.id_schedule = id_schedule;
         this.id_alarm = id_alarm;
