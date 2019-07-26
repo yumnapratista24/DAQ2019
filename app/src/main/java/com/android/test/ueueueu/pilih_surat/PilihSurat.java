@@ -41,8 +41,37 @@ public class PilihSurat extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         View view = getLayoutInflater().inflate(R.layout.activity_pilih_surat, null);
+
         renderSurah(view);
+
+        cekSuratUdahDipilih(view);
+
         setContentView(view);
+    }
+
+    private void cekSuratUdahDipilih(View view){
+        final AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(view.getContext());
+        alertDialogBuilder.setTitle("Anda harus memilih minimal 1 surat!");
+        alertDialogBuilder.setPositiveButton("Okay",
+                new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        dialogInterface.dismiss();
+                    }
+                });
+
+        Button saveButton = (Button) view.findViewById(R.id.saveButton);
+        saveButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(checkSurahChoosed(view)){
+                    finish();
+                    Toast.makeText(view.getContext(), "Surah saved!", Toast.LENGTH_SHORT).show();
+                } else{
+                    alertDialogBuilder.show();
+                }
+            }
+        });
     }
 
     public void showFirstTimer(Activity activity){
