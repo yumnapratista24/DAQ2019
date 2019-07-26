@@ -3,9 +3,10 @@ package com.android.test.ueueueu.alarm_main_app;
 import android.app.AlarmManager;
 import android.app.AlertDialog;
 import android.app.PendingIntent;
+import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.SharedPreferences;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.preference.Preference;
@@ -15,12 +16,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 import android.widget.TimePicker;
 
 import com.android.test.ueueueu.R;
 import com.android.test.ueueueu.helper.DatabaseHelper;
 import com.android.test.ueueueu.home_page.MainActFragment.*;
-import com.android.test.ueueueu.model.DataModel;
 import com.android.test.ueueueu.model.DayModel;
 import com.android.test.ueueueu.model.RepeatedDay;
 import com.android.test.ueueueu.model.Schedule;
@@ -35,11 +36,11 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.UUID;
 
 import static android.util.Log.d;
-import static com.android.test.ueueueu.home_page.MainActivity.PREFS;
 
 /**
  * Created by 642174 on 05/06/2019.
@@ -103,15 +104,18 @@ public class AlarmEditor extends AppCompatActivity {
 
         int jam = calendar.get(Calendar.HOUR);
         int menit = calendar.get(Calendar.MINUTE);
+        Log.i("JAM",jam + "");
+        Log.i("MENIT",menit + "");
 
         String jam_string = jam + "";
         String menit_string = menit + "";
 
         int kondisi = calendar.get(Calendar.AM_PM);
+        Log.i("AM/PM",kondisi + "");
         if(kondisi == Calendar.PM){
             jam+=12;
+            jam_string = jam + "";
         }
-
 
         Log.i("Sekarang nilai segini: ",numberPicker.getValue() + "");
 
@@ -155,15 +159,15 @@ public class AlarmEditor extends AppCompatActivity {
             listAlarmRepeat.add(repeatedDay);
 
             Calendar today = Calendar.getInstance();
-            if (repeatedDay.day < today.DAY_OF_WEEK) {
+            if (repeatedDay.day < today.get(Calendar.DAY_OF_WEEK)) {
                 calendar.add(Calendar.WEEK_OF_YEAR, 1);
             }
-            else if (repeatedDay.day == today.DAY_OF_WEEK && (calendar.HOUR_OF_DAY < today.HOUR_OF_DAY || today.HOUR_OF_DAY == calendar.HOUR_OF_DAY
-             && calendar.MINUTE < today.MINUTE)) {
+            else if (repeatedDay.day == today.get(Calendar.DAY_OF_WEEK) && (calendar.get(Calendar.HOUR_OF_DAY) < today.get(Calendar.HOUR_OF_DAY) || today.get(Calendar.HOUR_OF_DAY) == calendar.HOUR_OF_DAY
+             && calendar.get(Calendar.MINUTE) <= today.get(Calendar.MINUTE))) {
                 calendar.add(Calendar.WEEK_OF_YEAR, 1);
             }
 
-            pendingIntent = PendingIntent.getBroadcast(this, idAlarm, myIntent, 0);
+            pendingIntent = PendingIntent.getBroadcast(this, idAlarm, myIntent, PendingIntent.FLAG_UPDATE_CURRENT);
             calendar.set(Calendar.DAY_OF_WEEK, repeatedDay.day);
             Log.i("sekarang tanggal: ", calendar.toString());
             alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), AlarmManager.INTERVAL_DAY * 7, pendingIntent);
@@ -171,6 +175,9 @@ public class AlarmEditor extends AppCompatActivity {
 
         // create database schedule
         Schedule schedule = new Schedule(waktuAlarm, true, numberPicker.getValue(),true, listAlarmRepeat);
+
+        myIntent.putExtra("problem",schedule.number_of_quiz);
+
         dbHelper = new DatabaseHelper(this);
         dbHelper.createSchedule(schedule);
 
@@ -248,6 +255,35 @@ public class AlarmEditor extends AppCompatActivity {
         public void alarmMethod(Preference view){
             Intent intent = new Intent(view.getContext(), AlarmMethod.class);
             startActivity(intent);
+        }
+    }
+
+    protected class AsyncTaskRunner extends AsyncTask<String, String, String>{
+
+        private ProgressDialog progressDialog;
+
+        @Override
+        protected String doInBackground(String... voids) {
+            Log.i("LOADING","BACKGROUND");
+
+            try{
+                Thread.sleep(2000);
+            } catch (InterruptedException e){
+
+            }
+            return null;
+        }
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            progressDialog = ProgressDialog.show(AlarmEditor.this,"Logging in..","harap tunggu...");
+        }
+
+        @Override
+        protected void onPostExecute(String s) {
+            super.onPostExecute(s);
+            progressDialog.dismiss();
         }
     }
 }
