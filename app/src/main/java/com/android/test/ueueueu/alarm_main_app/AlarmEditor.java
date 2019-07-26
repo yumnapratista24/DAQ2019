@@ -16,7 +16,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ListView;
-import android.widget.ProgressBar;
 import android.widget.TimePicker;
 
 import com.android.test.ueueueu.R;
@@ -90,7 +89,6 @@ public class AlarmEditor extends AppCompatActivity {
         DayModel sabtu = new DayModel(Calendar.SATURDAY, "Sabtu");
 
         list_day = Arrays.asList(minggu,senin,selasa,rabu,kamis,jumat,sabtu);
-
 
         alarmManager = (AlarmManager) this.getSystemService(this.ALARM_SERVICE);
     }
@@ -176,10 +174,13 @@ public class AlarmEditor extends AppCompatActivity {
         // create database schedule
         Schedule schedule = new Schedule(waktuAlarm, true, numberPicker.getValue(),true, listAlarmRepeat);
 
-        myIntent.putExtra("problem",schedule.number_of_quiz);
+        myIntent.putExtra("problem",1);
 
         dbHelper = new DatabaseHelper(this);
         dbHelper.createSchedule(schedule);
+
+        AsyncTaskRunner atr = new AsyncTaskRunner();
+//        atr.execute(dbHelper.getQuiz(schedule.number_of_quiz));
 
         List<Schedule> list_alarm = dbHelper.selectAllSchedule();
 
@@ -194,10 +195,9 @@ public class AlarmEditor extends AppCompatActivity {
         ListOfAlarm.adapter.notifyDataSetChanged();
 
         Log.i("Hari yang dipilih: ", list_day.toString());
-
-
         finish();
     }
+
 
     public void showDialog(View view){
         LayoutInflater layoutInflater = getLayoutInflater();
@@ -258,32 +258,51 @@ public class AlarmEditor extends AppCompatActivity {
         }
     }
 
-    protected class AsyncTaskRunner extends AsyncTask<String, String, String>{
+    protected class AsyncTaskRunner extends AsyncTask<List<HashMap<String, String>>, Integer, String>{
 
         private ProgressDialog progressDialog;
 
         @Override
-        protected String doInBackground(String... voids) {
-            Log.i("LOADING","BACKGROUND");
-
+        protected String doInBackground(List<HashMap<String, String>>... voids) {
             try{
-                Thread.sleep(2000);
-            } catch (InterruptedException e){
+                for(int i=0;i<voids.length;i++){
+                    Thread.sleep(10000);
+                    publishProgress();
+                }
+            }catch (InterruptedException e){
 
             }
-            return null;
+            return "COMPLETED";
         }
 
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
+            Log.i("PREEXECUTE","OTW");
             progressDialog = ProgressDialog.show(AlarmEditor.this,"Logging in..","harap tunggu...");
         }
 
         @Override
         protected void onPostExecute(String s) {
             super.onPostExecute(s);
-            progressDialog.dismiss();
+            try {
+                if ((this.progressDialog != null) && this.progressDialog.isShowing()) {
+                    this.progressDialog.dismiss();
+                    finish();
+                }
+            } catch (final IllegalArgumentException e) {
+                // Handle or log or ignore
+            } catch (final Exception e) {
+                // Handle or log or ignore
+            } finally {
+                this.progressDialog = null;
+            }
+
+        }
+
+        @Override
+        protected void onProgressUpdate(Integer... values) {
+            super.onProgressUpdate(values);
         }
     }
 }

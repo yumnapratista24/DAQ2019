@@ -19,7 +19,9 @@ public class AlarmReceiver extends BroadcastReceiver {
     @Override
     public void onReceive(Context context, Intent intent) {
         String waktu = intent.getStringExtra("waktu");
+        int problem = intent.getIntExtra("problem",3);
         Intent i = new Intent("android.intent.action.MAIN");
+        i.putExtra("problem",problem);
         i.putExtra("waktu",waktu);
         i.setClass(context, AnswerSheet.class);
         i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
