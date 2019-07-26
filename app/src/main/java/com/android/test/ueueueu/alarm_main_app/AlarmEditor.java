@@ -104,13 +104,17 @@ public class AlarmEditor extends AppCompatActivity {
 
         int jam = calendar.get(Calendar.HOUR);
         int menit = calendar.get(Calendar.MINUTE);
+        Log.i("JAM",jam + "");
+        Log.i("MENIT",menit + "");
 
         String jam_string = jam + "";
         String menit_string = menit + "";
 
         int kondisi = calendar.get(Calendar.AM_PM);
+        Log.i("AM/PM",kondisi + "");
         if(kondisi == Calendar.PM){
             jam+=12;
+            jam_string = jam + "";
         }
 
         Log.i("Sekarang nilai segini: ",numberPicker.getValue() + "");
@@ -158,8 +162,8 @@ public class AlarmEditor extends AppCompatActivity {
             if (repeatedDay.day < today.get(Calendar.DAY_OF_WEEK)) {
                 calendar.add(Calendar.WEEK_OF_YEAR, 1);
             }
-            else if (repeatedDay.day == today.get(Calendar.DAY_OF_WEEK) && (calendar.HOUR_OF_DAY < today.HOUR_OF_DAY || today.HOUR_OF_DAY == calendar.HOUR_OF_DAY
-             && calendar.MINUTE <= today.MINUTE)) {
+            else if (repeatedDay.day == today.get(Calendar.DAY_OF_WEEK) && (calendar.get(Calendar.HOUR_OF_DAY) < today.get(Calendar.HOUR_OF_DAY) || today.get(Calendar.HOUR_OF_DAY) == calendar.HOUR_OF_DAY
+             && calendar.get(Calendar.MINUTE) <= today.get(Calendar.MINUTE))) {
                 calendar.add(Calendar.WEEK_OF_YEAR, 1);
             }
 
