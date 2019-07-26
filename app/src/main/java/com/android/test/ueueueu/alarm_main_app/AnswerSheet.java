@@ -153,7 +153,7 @@ public class AnswerSheet extends Activity {
 
     private void bikinPertanyaan(){
 
-        while()
+//        while()
 
         dict = quizzes.get(0);
 
