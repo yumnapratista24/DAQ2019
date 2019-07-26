@@ -9,6 +9,7 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v7.preference.Preference;
 import android.support.v7.preference.PreferenceFragmentCompat;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,12 +17,15 @@ import android.widget.ListView;
 
 import com.android.test.ueueueu.R;
 import com.android.test.ueueueu.alarm_main_app.AlarmEditor;
+import com.android.test.ueueueu.helper.DatabaseHelper;
 import com.android.test.ueueueu.model.DataModel;
+import com.android.test.ueueueu.model.Schedule;
 import com.android.test.ueueueu.pilih_surat.PilihSurat;
 
 import static com.android.test.ueueueu.home_page.MainActivity.PREFS;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by 642174 on 10/06/2019.
@@ -31,11 +35,11 @@ public class MainActFragment {
     public static class ListOfAlarm extends Fragment {
 
         public static CustomAdapter adapter;
+        DatabaseHelper dbHelper;
 
         @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
             View list_of_alarm = inflater.inflate(R.layout.home_fragment_alarm, container, false);
-            list_of_alarm.setBackgroundColor(Color.parseColor("#F3F2F0"));
             FloatingActionButton newAlarm = list_of_alarm.findViewById(R.id.alarm_add);
             newAlarm.setOnClickListener(new View.OnClickListener(){
                 @Override
@@ -44,31 +48,15 @@ public class MainActFragment {
                 }
             });
 
-
-
             ListView listView = (ListView) list_of_alarm.findViewById(R.id.list_of_alarm);
 
-            ArrayList<DataModel> dataModels = new ArrayList<>();
+            dbHelper = new DatabaseHelper(this.getActivity());
 
-            SharedPreferences alarm_db = this.getActivity().getSharedPreferences(PREFS, Context.MODE_PRIVATE);
-            String db_checker = alarm_db.getString("message", "empty");
-            if (!db_checker.equals("empty")) {
+            List<Schedule> list_alarm = dbHelper.selectAllSchedule();
 
-                String alarm_items[] = db_checker.split(" ");
+            adapter = new CustomAdapter(list_alarm, this.getContext(), getLayoutInflater(), this.getActivity());
 
-
-                for (int ij = 0; ij < alarm_items.length; ij++){
-                    if (!alarm_items[ij].equals(""))
-                        dataModels.add(new DataModel(alarm_items[ij]));
-
-                }
-
-                adapter = new CustomAdapter(dataModels, this.getActivity().getApplicationContext(), getLayoutInflater(), this.getActivity());
-
-                listView.setAdapter(adapter);
-
-
-            }
+            listView.setAdapter(adapter);
 
             return list_of_alarm;
         }

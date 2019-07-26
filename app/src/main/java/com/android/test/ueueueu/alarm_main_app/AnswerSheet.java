@@ -150,4 +150,46 @@ public class AnswerSheet extends Activity {
             }
         });
     }
+
+    private void bikinPertanyaan(){
+
+//        while()
+
+        dict = quizzes.get(0);
+
+        String kunjaw = dict.get("answer");
+        Log.i("KUNJAW CUKK",kunjaw);
+        int jawaban;
+
+        if(kunjaw.equals("0")) jawaban = R.id.A;
+        else if(kunjaw.equals("1")) jawaban = R.id.B;
+        else if(kunjaw.equals("2")) jawaban = R.id.C;
+        else if(kunjaw.equals("3")) jawaban = R.id.D;
+        else jawaban = 20000;
+
+        Intent intent = getIntent();
+        String waktu = intent.getStringExtra("waktu");
+
+        View dialogView = getLayoutInflater().inflate(R.layout.alarm_answer_sheet, null);
+
+        // set nama surat dan ayat
+        TextView namaSuratAyat = (TextView) dialogView.findViewById(R.id.nama_surat_ayat);
+        namaSuratAyat.setText("Surat " + dict.get("surah_name") + " ayat " + dict.get("no_ayah"));
+
+        // set soal
+        TextView soal = (TextView) dialogView.findViewById(R.id.soal);
+        soal.setText(dict.get("question"));
+        RadioButton radioA = (RadioButton) dialogView.findViewById((R.id.A));
+        radioA.setText(dict.get("option_0"));
+        RadioButton radioB = (RadioButton) dialogView.findViewById((R.id.B));
+        radioB.setText(dict.get("option_1"));
+        RadioButton radioC = (RadioButton) dialogView.findViewById((R.id.C));
+        radioC.setText(dict.get("option_2"));
+        RadioButton radioD = (RadioButton) dialogView.findViewById((R.id.D));
+        radioD.setText(dict.get("option_3"));
+
+        // set jawaban
+        setJawaban(jawaban, dialogView);
+
+    }
 }

@@ -56,7 +56,6 @@ public class Schedule {
 
     public ContentValues getContentValues() {
         ContentValues values = new ContentValues();
-        values.put("id", this.id);
         values.put("time", this.time.toString());
         values.put("is_repeat", this.is_repeat);
         values.put("id_method", this.id_method);
