@@ -42,8 +42,7 @@
         </activity>
 
         <activity android:name=".pilih_surat.PilihSurat"
-            android:label="Pilih surat hafalanmu"
-            android:parentActivityName=".home_page.MainActivity">
+            android:label="Pilih surat hafalanmu">
 
         </activity>
 
