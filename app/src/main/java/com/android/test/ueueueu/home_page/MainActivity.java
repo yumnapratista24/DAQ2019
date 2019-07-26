@@ -40,7 +40,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         DatabaseHelper db_helper = new DatabaseHelper(this);
-//        db_helper.selectAllSchedule();
+        db_helper.selectAllSchedule();
         setContentView(R.layout.activity_main);
         SharedPreferences sp = getSharedPreferences("onboarding",MODE_PRIVATE);
 
