@@ -75,8 +75,8 @@ public class AlarmEditor extends AppCompatActivity {
 
         // set number picker max and min value of problem
         numberPicker = (NumberPicker) findViewById(R.id.problem_number);
-        numberPicker.setMax(10);
-        numberPicker.setMin(1);
+        numberPicker.setMaxValue(10);
+        numberPicker.setMinValue(1);
 
         // set button to show dialog to choose repeat day for alarm
         View daily_alarm = (View) findViewById(R.id.daily_alarm);
