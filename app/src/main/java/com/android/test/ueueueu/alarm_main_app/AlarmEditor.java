@@ -16,7 +16,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ListView;
-import android.widget.NumberPicker;
 import android.widget.ProgressBar;
 import android.widget.TimePicker;
 
@@ -75,8 +74,8 @@ public class AlarmEditor extends AppCompatActivity {
 
         // set number picker max and min value of problem
         numberPicker = (NumberPicker) findViewById(R.id.problem_number);
-        numberPicker.setMaxValue(10);
-        numberPicker.setMinValue(1);
+        numberPicker.setMax(10);
+        numberPicker.setMin(1);
 
         // set button to show dialog to choose repeat day for alarm
         View daily_alarm = (View) findViewById(R.id.daily_alarm);
@@ -113,7 +112,6 @@ public class AlarmEditor extends AppCompatActivity {
         if(kondisi == Calendar.PM){
             jam+=12;
         }
-
 
         Log.i("Sekarang nilai segini: ",numberPicker.getValue() + "");
 
@@ -157,15 +155,15 @@ public class AlarmEditor extends AppCompatActivity {
             listAlarmRepeat.add(repeatedDay);
 
             Calendar today = Calendar.getInstance();
-            if (repeatedDay.day < today.DAY_OF_WEEK) {
+            if (repeatedDay.day < today.get(Calendar.DAY_OF_WEEK)) {
                 calendar.add(Calendar.WEEK_OF_YEAR, 1);
             }
-            else if (repeatedDay.day == today.DAY_OF_WEEK && (calendar.HOUR_OF_DAY < today.HOUR_OF_DAY || today.HOUR_OF_DAY == calendar.HOUR_OF_DAY
-             && calendar.MINUTE < today.MINUTE)) {
+            else if (repeatedDay.day == today.get(Calendar.DAY_OF_WEEK) && (calendar.HOUR_OF_DAY < today.HOUR_OF_DAY || today.HOUR_OF_DAY == calendar.HOUR_OF_DAY
+             && calendar.MINUTE <= today.MINUTE)) {
                 calendar.add(Calendar.WEEK_OF_YEAR, 1);
             }
 
-            pendingIntent = PendingIntent.getBroadcast(this, idAlarm, myIntent, 0);
+            pendingIntent = PendingIntent.getBroadcast(this, idAlarm, myIntent, PendingIntent.FLAG_UPDATE_CURRENT);
             calendar.set(Calendar.DAY_OF_WEEK, repeatedDay.day);
             Log.i("sekarang tanggal: ", calendar.toString());
             alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), AlarmManager.INTERVAL_DAY * 7, pendingIntent);

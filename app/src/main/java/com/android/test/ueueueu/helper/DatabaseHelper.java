@@ -246,7 +246,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             List<Word> currAyah = selectAyah(wordToFill.no_surah, wordToFill.no_ayah);
 
             int counter = 0;
-            for (int i = 1; i <= 4; i++) {
+            for (int i = 1; i < currAyah.size(); i++) {
                 if (counter > 3) {
                     break;
                 }
