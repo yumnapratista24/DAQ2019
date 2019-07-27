@@ -5,24 +5,6 @@
     <PreferenceCategory
         android:title="@string/pref_cat1">
         <Preference
-            android:key="method"
-            android:icon="@drawable/ic_action_access_alarm"
-            android:title="@string/pref_method">
-
-        </Preference>
-        <Preference
-            android:key="volume"
-            android:icon="@drawable/ic_headset"
-            android:title="@string/pref_volume">
-
-        </Preference>
-        <Preference
-            android:icon="@drawable/ic_action_add_circle"
-            android:key="general"
-            android:title="@string/pref_general">
-
-        </Preference>
-        <Preference
             android:icon="@drawable/ic_action_add_circle"
             android:key="pilih_surat"
             android:title="Pilih Surat">
@@ -33,11 +15,6 @@
 
     <PreferenceCategory
         android:title="@string/pref_cat2">
-        <Preference
-            android:key="caution"
-            android:title="@string/pref_caution">
-
-        </Preference>
         <Preference
             android:key="faq"
             android:title="@string/pref_faq">

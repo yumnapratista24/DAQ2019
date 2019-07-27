@@ -41,10 +41,12 @@ public class PilihSurat extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         View view = getLayoutInflater().inflate(R.layout.activity_pilih_surat, null);
-        setContentView(view);
+
         renderSurah(view);
 
         cekSuratUdahDipilih(view);
+
+        setContentView(view);
     }
 
     private void cekSuratUdahDipilih(View view){

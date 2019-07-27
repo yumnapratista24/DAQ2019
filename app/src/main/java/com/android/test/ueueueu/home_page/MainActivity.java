@@ -44,7 +44,7 @@ public class MainActivity extends AppCompatActivity {
         // On boarding app
         if(!first_timer) {
             showOnBoarding();
-            sp.edit().putBoolean("first_timer",true);
+            sp.edit().putBoolean("first_timer",true).apply();
         }
         // Not first timer
         setupApp();
