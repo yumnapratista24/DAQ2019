@@ -12,7 +12,7 @@
         android:theme="@style/AppTheme">
         <activity
             android:name=".home_page.MainActivity"
-            android:label="Al-Arm">
+            android:label="ingetQuran">
 
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

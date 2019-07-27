@@ -186,8 +186,10 @@ public class AnswerSheet extends Activity {
             else if (kunjaw.equals("3")) jawaban = R.id.D;
             else jawaban = 20000;
 
-            RadioGroup rg = (RadioGroup) dialogView.findViewById(R.id.jawaban);
-            rg.clearCheck();
+            RadioGroup rg1 = (RadioGroup) dialogView.findViewById(R.id.jawaban1);
+            rg1.clearCheck();
+            RadioGroup rg2 = (RadioGroup) dialogView.findViewById(R.id.jawaban2);
+            rg2.clearCheck();
 
             // set soal
             TextView soal = (TextView) dialogView.findViewById(R.id.soal);
@@ -207,28 +209,47 @@ public class AnswerSheet extends Activity {
     }
 
     private void setJawaban(final int jawaban, final View view){
-        RadioGroup rg = (RadioGroup) view.findViewById(R.id.jawaban);
+        RadioGroup rg = (RadioGroup) view.findViewById(R.id.jawaban1);
         rg.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup radioGroup, int i) {
-                if(i == jawaban){
+                if (i == jawaban) {
                     Toast.makeText(AnswerSheet.this, "BENAR!", Toast.LENGTH_SHORT).show();
-                    Log.i("JAWABAN","SUCCESS");
+                    Log.i("JAWABAN", "SUCCESS");
                     counter++;
                     bikinSoal(view);
 
-                } else{
-                    Toast.makeText(AnswerSheet.this, "Kurang tepat, Coba lagi!" , Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(AnswerSheet.this, "Kurang tepat, Coba lagi!", Toast.LENGTH_SHORT).show();
 //                    try{
 //                        Thread.sleep(2000);
 //                    } catch (InterruptedException e){
 //                        e.printStackTrace();
 //                    }
                 }
+                RadioGroup rg2 = (RadioGroup) view.findViewById(R.id.jawaban2);
+                rg2.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+                    @Override
+                    public void onCheckedChanged(RadioGroup radioGroup, int i) {
+                        if (i == jawaban) {
+                            Toast.makeText(AnswerSheet.this, "BENAR!", Toast.LENGTH_SHORT).show();
+                            Log.i("JAWABAN", "SUCCESS");
+                            counter++;
+                            bikinSoal(view);
+
+                        } else {
+                            Toast.makeText(AnswerSheet.this, "Kurang tepat, Coba lagi!", Toast.LENGTH_SHORT).show();
+//                    try{
+//                        Thread.sleep(2000);
+//                    } catch (InterruptedException e){
+//                        e.printStackTrace();
+//                    }
+                        }
+                    }
+                });
             }
         });
     }
-
     protected class AsyncTaskRunner extends AsyncTask<Integer, Integer, List<HashMap<String, String>>> {
 
         private ProgressDialog progressDialog;
@@ -261,7 +282,7 @@ public class AnswerSheet extends Activity {
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
-            Log.i("PREEXECUTE","OTW");
+            Log.i("PREEXECUTE", "OTW");
 //            progressDialog = ProgressDialog.show(AnswerSheet.this,"Logging in..","harap tunggu...");
         }
 
@@ -278,3 +299,4 @@ public class AnswerSheet extends Activity {
         }
     }
 }
+
