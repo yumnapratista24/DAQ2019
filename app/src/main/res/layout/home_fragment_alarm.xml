@@ -14,7 +14,7 @@
             android:id="@+id/alarm_timeset"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Welcome to Al-Arm tes "
+            android:text="Welcome to ingetQuran"
             android:textAlignment="center" />
 
         <ListView

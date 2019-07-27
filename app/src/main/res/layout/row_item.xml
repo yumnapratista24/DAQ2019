@@ -3,49 +3,95 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="80dp"
-    android:layout_marginStart="10dp"
-    android:layout_marginEnd="10dp"
+    android:layout_height="90dp"
+    android:layout_marginStart="6dp"
+    android:layout_marginEnd="6dp"
     android:layout_marginTop="2dp"
-    android:layout_marginBottom="2dp"
+    android:layout_marginBottom="4dp"
     android:id="@+id/alarm_tes"
     android:orientation="horizontal"
     android:background="@drawable/border">
 
 
     <TextView
+        android:id="@+id/friday"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="16dp"
+        android:textColor="@color/abubumuda"
+        android:text="Fri"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/saturday" />
+
+    <TextView
+        android:id="@+id/saturday"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="16dp"
+        android:textColor="@color/abubumuda"
+        android:text="Sat"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <TextView
+        android:id="@+id/thursday"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:textColor="@color/abubumuda"
+        android:layout_marginBottom="16dp"
+        android:text="Thu"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/friday" />
+
+    <TextView
+        android:id="@+id/wednesday"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:textColor="@color/abubumuda"
+        android:layout_marginBottom="16dp"
+        android:text="Wed"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/thursday" />
+
+    <TextView
         android:id="@+id/textView"
-        android:layout_width="178dp"
-        android:layout_height="43dp"
+        android:layout_width="151dp"
+        android:layout_height="39dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:layout_marginHorizontal="20dp"
-        android:layout_marginStart="8dp"
+        android:layout_marginStart="36dp"
         android:layout_marginTop="8dp"
         android:layout_marginBottom="8dp"
         android:gravity="center_vertical"
         android:text="TextView"
         android:textColor="@color/dark_green"
-        android:textSize="25sp"
+        android:textSize="30sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.523" />
+        app:layout_constraintVertical_bias="0.516" />
 
     <Button
         android:id="@+id/delete"
-        android:layout_width="52dp"
-        android:layout_height="34dp"
+        android:layout_width="51dp"
+        android:layout_height="26dp"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="8dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="16dp"
         android:background="@android:color/holo_red_dark"
         android:text="Delete"
         android:textColor="#ffffff"
         android:textSize="11sp"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -53,13 +99,46 @@
         android:id="@+id/alarm_on_off"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="20dp"
-        android:layout_marginBottom="8dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="16dp"
         app:layout_constraintEnd_toStartOf="@+id/delete"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.513" />
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/sunday"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:textColor="@color/abubumuda"
+        android:layout_marginBottom="16dp"
+        android:text="Sun"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/monday" />
+
+    <TextView
+        android:id="@+id/monday"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="16dp"
+        android:text="Mon"
+        android:textColor="@color/abubumuda"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/tuesday" />
+
+    <TextView
+        android:id="@+id/tuesday"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="16dp"
+        android:text="Tue"
+        android:textSize="12sp"
+        android:textColor="@color/abubumuda"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/wednesday" />
 
 
 </android.support.constraint.ConstraintLayout>

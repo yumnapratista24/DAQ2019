@@ -14,6 +14,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.android.test.ueueueu.R;
 import com.android.test.ueueueu.alarm_main_app.AlarmEditor;
@@ -57,6 +58,11 @@ public class MainActFragment {
             adapter = new CustomAdapter(list_alarm, this.getContext(), getLayoutInflater(), this.getActivity());
 
             listView.setAdapter(adapter);
+
+            if (list_alarm.size() != 0 ){
+                TextView text = list_of_alarm.findViewById(R.id.alarm_timeset);
+                text.setText("");
+            }
 
             return list_of_alarm;
         }

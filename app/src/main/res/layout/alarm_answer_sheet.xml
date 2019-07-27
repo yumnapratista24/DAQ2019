@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/linearLayout2"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
@@ -9,15 +11,16 @@
         android:layout_width="match_parent"
         android:layout_height="80dp"
         android:background="@color/green_light">
+
         <TextView
             android:id="@+id/waktu"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:textAlignment="center"
-            android:text="bambang"
             android:gravity="center"
-            android:textSize="@android:dimen/app_icon_size"
-            android:textColor="@color/white"/>
+            android:text="bambang"
+            android:textAlignment="center"
+            android:textColor="@color/white"
+            android:textSize="@android:dimen/app_icon_size" />
     </RelativeLayout>
 
     <LinearLayout
@@ -32,52 +35,114 @@
             android:layout_height="wrap_content"
             android:text="NAMA SURAT/AYAT"
             android:textAlignment="center"
-            android:textSize="20dp"/>
+            android:textSize="20dp" />
 
         <TextView
             android:id="@+id/soal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:textSize="30dp"
-            android:textColor="@android:color/black"
             android:layout_gravity="center"
+            android:layout_marginTop="20dp"
+            android:gravity="center"
             android:text="SOALNYEEEE"
-            android:gravity="center"/>
+            android:textColor="@android:color/black"
+            android:textSize="30dp" />
+
+    </LinearLayout>
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:layout_editor_absoluteY="200dp">
 
         <RadioGroup
-            android:id="@+id/jawaban"
-            android:layout_marginTop="20dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" >
+            android:id="@+id/jawaban1"
+            android:layout_width="360dp"
+            android:layout_height="87dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="8dp"
+            android:gravity="center_horizontal|center_vertical"
+            android:orientation="horizontal"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.485"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/jawaban2"
+            app:layout_constraintVertical_bias="0.015">
 
             <RadioButton
                 android:id="@+id/A"
+                android:layout_width="120dp"
+                android:layout_height="60dp"
+                android:layout_marginEnd="8dp"
+                android:background="@drawable/yourbuttonbackground"
+                android:button="@android:color/transparent"
+                android:gravity="center_vertical|center_horizontal"
+                android:text="JAWABAN LOOO"
+                android:textColor="@color/dark_green"
                 android:textSize="20dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="JAWABAN LOOO BROO"/>
-            <RadioButton
-                android:id="@+id/B"
-                android:textSize="20dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="JAWABAN LOOO BROO"/>
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
             <RadioButton
-                android:id="@+id/C"
+                android:id="@+id/B"
+                android:layout_width="120dp"
+                android:layout_height="60dp"
+                android:layout_marginStart="8dp"
+                android:background="@drawable/yourbuttonbackground"
+                android:button="@android:color/transparent"
+                android:gravity="center_vertical|center_horizontal"
+                android:text="JAWABAN LOOO"
+                android:textColor="@color/dark_green"
                 android:textSize="20dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="JAWABAN LOOO BROO" />
-            <RadioButton
-                android:id="@+id/D"
-                android:textSize="20dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="JAWABAN LOOO BROO"/>
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
 
         </RadioGroup>
 
-    </LinearLayout>
+        <RadioGroup
+            android:id="@+id/jawaban2"
+            android:layout_width="359dp"
+            android:layout_height="84dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="8dp"
+            android:gravity="center_vertical|center_horizontal"
+            android:orientation="horizontal"
+            app:layout_constraintBottom_toTopOf="@+id/jawaban1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <RadioButton
+                android:id="@+id/C"
+                android:layout_width="120dp"
+                android:layout_height="60dp"
+                android:layout_marginEnd="8dp"
+                android:background="@drawable/yourbuttonbackground"
+                android:button="@android:color/transparent"
+                android:gravity="center_vertical|center_horizontal"
+                android:text="JAWABAN LOOO"
+                android:textColor="@color/dark_green"
+                android:textSize="20dp" />
+
+            <RadioButton
+                android:id="@+id/D"
+                android:layout_width="120dp"
+                android:layout_height="60dp"
+                android:layout_marginStart="8dp"
+                android:background="@drawable/yourbuttonbackground"
+                android:button="@android:color/transparent"
+                android:gravity="center_vertical|center_horizontal"
+                android:text="JAWABAN LOOO"
+                android:textColor="@color/dark_green"
+                android:textSize="20dp" />
+
+
+        </RadioGroup>
+    </android.support.constraint.ConstraintLayout>
+
+
 </LinearLayout>

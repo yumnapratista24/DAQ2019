@@ -134,11 +134,27 @@ public class AnswerSheet extends Activity {
     }
 
     private void setJawaban(final int jawaban, View view){
-        RadioGroup rg = (RadioGroup) view.findViewById(R.id.jawaban);
+        RadioGroup rg = (RadioGroup) view.findViewById(R.id.jawaban1);
         rg.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup radioGroup, int i) {
-                if(i == jawaban){
+                if (i == jawaban){
+                    Toast.makeText(AnswerSheet.this, "BENER CUKK", Toast.LENGTH_SHORT).show();
+                    Log.i("JAWABAN","SUCCESS");
+                    alertDialog.dismiss();
+                    finish();
+                } else{
+                    Toast.makeText(AnswerSheet.this, "SALAH CUKK " + jawaban + " bukan " + i, Toast.LENGTH_SHORT).show();
+                    Log.i("JAWABAN","SALAHH CUKKK");
+                }
+            }
+        });
+
+        RadioGroup rg2 =  (RadioGroup) view.findViewById(R.id.jawaban2);
+        rg2.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup radioGroup, int i) {
+                if (i == jawaban){
                     Toast.makeText(AnswerSheet.this, "BENER CUKK", Toast.LENGTH_SHORT).show();
                     Log.i("JAWABAN","SUCCESS");
                     alertDialog.dismiss();
