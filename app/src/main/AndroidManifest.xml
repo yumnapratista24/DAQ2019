@@ -50,8 +50,8 @@
 
         <receiver android:name=".alarm_main_app.AlarmReceiver"></receiver>
 
-        <activity android:name=".alarm_main_app.AnswerSheet">
-
+        <activity android:name=".alarm_main_app.AnswerSheet"
+            android:excludeFromRecents="true">
         </activity>
     </application>
 

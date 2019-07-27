@@ -39,9 +39,6 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         SharedPreferences sp = getSharedPreferences("onboarding",MODE_PRIVATE);
 
-        // Dev mode biar selalu muncul yang pertama kali
-        sp.edit().clear();
-
         Boolean first_timer = sp.getBoolean("first_timer",false);
 
         // On boarding app

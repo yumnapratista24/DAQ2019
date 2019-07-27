@@ -13,7 +13,9 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.android.test.ueueueu.R;
 import com.android.test.ueueueu.alarm_main_app.AlarmEditor;
@@ -21,6 +23,8 @@ import com.android.test.ueueueu.helper.DatabaseHelper;
 import com.android.test.ueueueu.model.DataModel;
 import com.android.test.ueueueu.model.Schedule;
 import com.android.test.ueueueu.pilih_surat.PilihSurat;
+
+import org.w3c.dom.Text;
 
 import static com.android.test.ueueueu.home_page.MainActivity.PREFS;
 

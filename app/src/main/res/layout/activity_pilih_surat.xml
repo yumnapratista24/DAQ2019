@@ -10,13 +10,4 @@
         android:layout_above="@+id/saveButton"
         android:layout_marginBottom="10dp"/>
 
-    <Button
-        android:id="@+id/saveButton"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Save Surah!"
-        android:layout_alignParentBottom="true"
-        android:layout_marginBottom="15dp"
-        android:layout_marginHorizontal="50dp"/>
-
 </RelativeLayout>

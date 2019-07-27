@@ -179,19 +179,9 @@ public class AlarmEditor extends AppCompatActivity {
         dbHelper = new DatabaseHelper(this);
         dbHelper.createSchedule(schedule);
 
-        AsyncTaskRunner atr = new AsyncTaskRunner();
-//        atr.execute(dbHelper.getQuiz(schedule.number_of_quiz));
-
-        List<Schedule> list_alarm = dbHelper.selectAllSchedule();
-
-        Log.i("ListAlarm:", list_alarm.toString());
-        Log.i("ListAlarm:", list_alarm.get(0).time.toString());
-
-
         // buat alarm
 
         ListOfAlarm.adapter.add(schedule);
-
         ListOfAlarm.adapter.notifyDataSetChanged();
 
         Log.i("Hari yang dipilih: ", list_day.toString());
@@ -255,54 +245,6 @@ public class AlarmEditor extends AppCompatActivity {
         public void alarmMethod(Preference view){
             Intent intent = new Intent(view.getContext(), AlarmMethod.class);
             startActivity(intent);
-        }
-    }
-
-    protected class AsyncTaskRunner extends AsyncTask<List<HashMap<String, String>>, Integer, String>{
-
-        private ProgressDialog progressDialog;
-
-        @Override
-        protected String doInBackground(List<HashMap<String, String>>... voids) {
-            try{
-                for(int i=0;i<voids.length;i++){
-                    Thread.sleep(10000);
-                    publishProgress();
-                }
-            }catch (InterruptedException e){
-
-            }
-            return "COMPLETED";
-        }
-
-        @Override
-        protected void onPreExecute() {
-            super.onPreExecute();
-            Log.i("PREEXECUTE","OTW");
-            progressDialog = ProgressDialog.show(AlarmEditor.this,"Logging in..","harap tunggu...");
-        }
-
-        @Override
-        protected void onPostExecute(String s) {
-            super.onPostExecute(s);
-            try {
-                if ((this.progressDialog != null) && this.progressDialog.isShowing()) {
-                    this.progressDialog.dismiss();
-                    finish();
-                }
-            } catch (final IllegalArgumentException e) {
-                // Handle or log or ignore
-            } catch (final Exception e) {
-                // Handle or log or ignore
-            } finally {
-                this.progressDialog = null;
-            }
-
-        }
-
-        @Override
-        protected void onProgressUpdate(Integer... values) {
-            super.onProgressUpdate(values);
         }
     }
 }
