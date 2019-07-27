@@ -19,6 +19,7 @@ import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.TimePicker;
+import android.widget.Toast;
 
 import com.android.test.ueueueu.R;
 import com.android.test.ueueueu.helper.DatabaseHelper;
@@ -101,7 +102,7 @@ public class AlarmEditor extends AppCompatActivity {
     public void toggleOnCLick(View view){
 
         if (getSelectedDays().size() == 0 ){
-
+            Toast.makeText(view.getContext(), "Tolong pilih hari", Toast.LENGTH_SHORT).show();
         }
         else {
 
@@ -189,11 +190,8 @@ public class AlarmEditor extends AppCompatActivity {
 
             dbHelper = new DatabaseHelper(this);
             dbHelper.createSchedule(schedule);
+            myIntent.putExtra("problem",1);
 
-            List<Schedule> list_alarm = dbHelper.selectAllSchedule();
-
-            Log.i("ListAlarm:", list_alarm.toString());
-            Log.i("ListAlarm:", list_alarm.get(0).time.toString());
 
 
             // buat alarm
@@ -204,11 +202,12 @@ public class AlarmEditor extends AppCompatActivity {
 
             Log.i("Hari yang dipilih: ", list_day.toString());
 
-
             finish();
 
         }
+
     }
+
 
     public void showDialog(View view){
         LayoutInflater layoutInflater = getLayoutInflater();
@@ -289,32 +288,51 @@ public class AlarmEditor extends AppCompatActivity {
         }
     }
 
-    protected class AsyncTaskRunner extends AsyncTask<String, String, String>{
+    protected class AsyncTaskRunner extends AsyncTask<List<HashMap<String, String>>, Integer, String>{
 
         private ProgressDialog progressDialog;
 
         @Override
-        protected String doInBackground(String... voids) {
-            Log.i("LOADING","BACKGROUND");
-
+        protected String doInBackground(List<HashMap<String, String>>... voids) {
             try{
-                Thread.sleep(2000);
-            } catch (InterruptedException e){
+                for(int i=0;i<voids.length;i++){
+                    Thread.sleep(10000);
+                    publishProgress();
+                }
+            }catch (InterruptedException e){
 
             }
-            return null;
+            return "COMPLETED";
         }
 
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
+            Log.i("PREEXECUTE","OTW");
             progressDialog = ProgressDialog.show(AlarmEditor.this,"Logging in..","harap tunggu...");
         }
 
         @Override
         protected void onPostExecute(String s) {
             super.onPostExecute(s);
-            progressDialog.dismiss();
+            try {
+                if ((this.progressDialog != null) && this.progressDialog.isShowing()) {
+                    this.progressDialog.dismiss();
+                    finish();
+                }
+            } catch (final IllegalArgumentException e) {
+                // Handle or log or ignore
+            } catch (final Exception e) {
+                // Handle or log or ignore
+            } finally {
+                this.progressDialog = null;
+            }
+
+        }
+
+        @Override
+        protected void onProgressUpdate(Integer... values) {
+            super.onProgressUpdate(values);
         }
     }
 }

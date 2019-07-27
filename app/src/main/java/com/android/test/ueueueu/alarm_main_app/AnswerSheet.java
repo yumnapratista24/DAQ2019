@@ -3,11 +3,14 @@ package com.android.test.ueueueu.alarm_main_app;
 import android.app.Activity;
 import android.app.Dialog;
 import android.app.WallpaperManager;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
+import android.media.AudioManager;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.Vibrator;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -44,6 +47,8 @@ public class AnswerSheet extends Activity {
     private DatabaseHelper dbHelper;
     private List<HashMap<String,String>> quizzes;
     private AlertDialog alertDialog;
+    private int Counter;
+    private Vibrator vibrator;
 
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
@@ -65,14 +70,18 @@ public class AnswerSheet extends Activity {
 
         dbHelper = new DatabaseHelper(this);
 
-        Surah surah = dbHelper.getAllSurah().get(0);
+        Intent intent = getIntent();
+        String waktu = intent.getStringExtra("waktu");
+        int problem = intent.getIntExtra("problem",3);
 
-        surah.is_choosen = true;
-
-        dbHelper.updateSurah(surah);
-        dbHelper.updateSurah(dbHelper.getAllSurah().get(1));
-        dbHelper.updateSurah(dbHelper.getAllSurah().get(2));
-        dbHelper.updateSurah(dbHelper.getAllSurah().get(3));
+//        Surah surah = dbHelper.getAllSurah().get(0);
+//
+//        surah.is_choosen = true;
+//
+//        dbHelper.updateSurah(surah);
+//        dbHelper.updateSurah(dbHelper.getAllSurah().get(1));
+//        dbHelper.updateSurah(dbHelper.getAllSurah().get(2));
+//        dbHelper.updateSurah(dbHelper.getAllSurah().get(3));
 
         quizzes = dbHelper.getQuiz(1);
 
@@ -87,9 +96,6 @@ public class AnswerSheet extends Activity {
         else if(kunjaw.equals("2")) jawaban = R.id.C;
         else if(kunjaw.equals("3")) jawaban = R.id.D;
         else jawaban = 20000;
-
-        Intent intent = getIntent();
-        String waktu = intent.getStringExtra("waktu");
 
         View dialogView = layoutInflater.inflate(R.layout.alarm_answer_sheet, null);
 
@@ -131,6 +137,10 @@ public class AnswerSheet extends Activity {
 
         getWindow().setBackgroundDrawable(wallpaperDrawable);
         alertDialog.show();
+
+        vibrator = (Vibrator)getSystemService(Context.VIBRATOR_SERVICE);
+        long[] pattern = {0, 3000, 1000};
+        vibrator.vibrate(pattern,0);
     }
 
     private void setJawaban(final int jawaban, View view){
@@ -158,6 +168,7 @@ public class AnswerSheet extends Activity {
                     Toast.makeText(AnswerSheet.this, "BENER CUKK", Toast.LENGTH_SHORT).show();
                     Log.i("JAWABAN","SUCCESS");
                     alertDialog.dismiss();
+                    vibrator.cancel();
                     finish();
                 } else{
                     Toast.makeText(AnswerSheet.this, "SALAH CUKK " + jawaban + " bukan " + i, Toast.LENGTH_SHORT).show();

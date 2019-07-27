@@ -61,7 +61,7 @@ public class MainActFragment {
 
             if (list_alarm.size() != 0 ){
                 TextView text = list_of_alarm.findViewById(R.id.alarm_timeset);
-                text.setText("");
+                text.setVisibility(View.INVISIBLE);
             }
 
             return list_of_alarm;
