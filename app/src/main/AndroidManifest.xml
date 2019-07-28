@@ -11,7 +11,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".home_page.MainActivity"
+            android:name="anas.mtq.daq.ueueueu.home_page.MainActivity"
             android:label="ingetQuran">
 
             <intent-filter>
@@ -24,33 +24,33 @@
         </activity>
 
         <!--SET NEW ALARM AND ALARM SETTINGS ACTIVITY-->
-        <activity android:name=".alarm_main_app.AlarmEditor"
+        <activity android:name="anas.mtq.daq.ueueueu.alarm_main_app.AlarmEditor"
             android:label="@string/act_alarm_editor"
-            android:parentActivityName=".home_page.MainActivity">
+            android:parentActivityName="anas.mtq.daq.ueueueu.home_page.MainActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".home_page.MainActivity" />
+                android:value="anas.mtq.daq.ueueueu.home_page.MainActivity" />
 
         </activity>
 
-        <activity android:name=".alarm_main_app.AlarmMethod"
+        <activity android:name="anas.mtq.daq.ueueueu.alarm_main_app.AlarmMethod"
             android:label="@string/act_alarm_settings_method"
-            android:parentActivityName=".alarm_main_app.AlarmEditor">
+            android:parentActivityName="anas.mtq.daq.ueueueu.alarm_main_app.AlarmEditor">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".alarm_main_app.AlarmEditor" />
+                android:value="anas.mtq.daq.ueueueu.alarm_main_app.AlarmEditor" />
 
         </activity>
 
-        <activity android:name=".pilih_surat.PilihSurat"
+        <activity android:name="anas.mtq.daq.ueueueu.pilih_surat.PilihSurat"
             android:label="Pilih surat hafalanmu">
 
         </activity>
 
 
-        <receiver android:name=".alarm_main_app.AlarmReceiver"></receiver>
+        <receiver android:name="anas.mtq.daq.ueueueu.alarm_main_app.AlarmReceiver"></receiver>
 
-        <activity android:name=".alarm_main_app.AnswerSheet"
+        <activity android:name="anas.mtq.daq.ueueueu.alarm_main_app.AnswerSheet"
             android:excludeFromRecents="true">
         </activity>
     </application>

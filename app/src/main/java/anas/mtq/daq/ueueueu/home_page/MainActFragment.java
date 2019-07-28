@@ -1,0 +1,96 @@
+package anas.mtq.daq.ueueueu.home_page;
+
+import android.content.Intent;
+import android.net.Uri;
+import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
+import android.support.v4.app.Fragment;
+import android.support.v7.preference.Preference;
+import android.support.v7.preference.PreferenceFragmentCompat;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ListView;
+import android.widget.TextView;
+
+import com.android.test.ueueueu.R;
+import anas.mtq.daq.ueueueu.alarm_main_app.AlarmEditor;
+import anas.mtq.daq.ueueueu.helper.DatabaseHelper;
+import anas.mtq.daq.ueueueu.model.Schedule;
+import anas.mtq.daq.ueueueu.pilih_surat.PilihSurat;
+
+import java.util.List;
+
+/**
+ * Created by 642174 on 10/06/2019.
+ */
+
+public class MainActFragment {
+    public static class ListOfAlarm extends Fragment {
+
+        public static CustomAdapter adapter;
+        DatabaseHelper dbHelper;
+
+        @Override
+        public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+            View list_of_alarm = inflater.inflate(R.layout.home_fragment_alarm, container, false);
+            FloatingActionButton newAlarm = list_of_alarm.findViewById(R.id.alarm_add);
+            newAlarm.setOnClickListener(new View.OnClickListener(){
+                @Override
+                public void onClick(View view) {
+                    addAlarm(view);
+                }
+            });
+
+            ListView listView = (ListView) list_of_alarm.findViewById(R.id.list_of_alarm);
+
+            dbHelper = new DatabaseHelper(this.getActivity());
+
+            List<Schedule> list_alarm = dbHelper.selectAllSchedule();
+
+            adapter = new CustomAdapter(list_alarm, this.getContext(), getLayoutInflater(), this.getActivity());
+
+            listView.setAdapter(adapter);
+
+            if (list_alarm.size() != 0 ){
+                TextView text = list_of_alarm.findViewById(R.id.alarm_timeset);
+                text.setVisibility(View.INVISIBLE);
+            }
+
+            return list_of_alarm;
+        }
+
+        public void addAlarm(View view){
+            Intent intent = new Intent(view.getContext(), AlarmEditor.class);
+            startActivity(intent);
+        }
+    }
+
+    public static class AppSettings extends PreferenceFragmentCompat {
+        @Override
+        public void onCreatePreferences(Bundle savedInstanceState, String rootKey){
+            setPreferencesFromResource(R.xml.preferences, rootKey);
+
+            final Preference pilih_surat = findPreference("pilih_surat");
+            pilih_surat.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
+                @Override
+                public boolean onPreferenceClick(Preference preference) {
+                    Intent intent = new Intent(getActivity(), PilihSurat.class);
+                    startActivity(intent);
+                    return true;
+                }
+            });
+
+            final Preference feedback = findPreference("feedback");
+            feedback.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
+                @Override
+                public boolean onPreferenceClick(Preference preference) {
+                    Uri uri = Uri.parse("http://bit.ly/FeedbackingetQuran"); // missing 'http://' will cause crashed
+                    Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+                    startActivity(intent);
+                    return true;
+                }
+            });
+        }
+    }
+}
